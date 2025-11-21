@@ -1,46 +1,142 @@
-# Getting Started with Create React App
+# Crowdfunding Platform - Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Технологии
+- React 18
+- React Router v6
+- Axios
+- React Hook Form
 
-## Available Scripts
+## Требования
+- Node.js 16+
+- npm или yarn
 
-In the project directory, you can run:
+## Установка и запуск
 
-### `npm start`
+### 1. Установка зависимостей
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```bash
+npm install
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### 2. Настройка API URL
 
-### `npm test`
+Откройте `src/services/api.js` и убедитесь, что API_URL указывает на ваш backend:
+```javascript
+const API_URL = 'http://localhost:8080/api';
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 3. Запуск приложения
 
-### `npm run build`
+```bash
+npm start
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Приложение откроется на `http://localhost:3000`
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Структура проекта
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
+src/
+├── components/         # Переиспользуемые компоненты
+│   ├── Navbar.js
+│   ├── CampaignCard.js
+│   └── DonationModal.js
+├── pages/             # Страницы приложения
+│   ├── HomePage.js
+│   ├── LoginPage.js
+│   ├── RegisterPage.js
+│   ├── CampaignDetailPage.js
+│   ├── CreateCampaignPage.js
+│   └── MyCampaignsPage.js
+├── services/          # API сервисы
+│   └── api.js
+├── context/           # React Context
+│   └── AuthContext.js
+├── styles/            # CSS файлы
+└── App.js             # Главный компонент
+```
 
-### `npm run eject`
+## Основные функции
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Авторизация
+- Регистрация нового пользователя
+- Вход в систему
+- JWT токен сохраняется в localStorage
+- Виртуальный баланс 10000₽ при регистрации
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Кампании
+- Просмотр всех активных кампаний
+- Создание новой кампании
+- Редактирование своих кампаний
+- Удаление своих кампаний
+- Фильтрация по категориям
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Донаты
+- Фиктивная система донатов
+- Минимальная сумма доната: $10
+- Возможность оставить сообщение
+- Анонимные донаты
+- Списание с виртуального баланса
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Страницы
 
-## Learn More
+### Главная (/)
+- Список всех активных кампаний
+- Карточки с прогресс-барами
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Вход (/login)
+- Форма входа
+- Валидация полей
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Регистрация (/register)
+- Форма регистрации
+- Валидация email и пароля
+
+### Детали кампании (/campaigns/:id)
+- Полная информация о кампании
+- Список донатов
+- Кнопка "Donate" (защищена авторизацией)
+
+### Создание кампании (/create-campaign)
+- Форма создания кампании
+- Выбор категории
+- Загрузка изображения по URL
+- Требуется авторизация
+
+### Мои кампании (/my-campaigns)
+- Список кампаний пользователя
+- Кнопки редактирования и удаления
+- Требуется авторизация
+
+## Защищенные маршруты
+
+Некоторые страницы требуют авторизации:
+- /create-campaign
+- /my-campaigns
+
+При попытке доступа без авторизации происходит редирект на /login
+
+## API Интеграция
+
+Все запросы к backend проходят через `src/services/api.js`:
+- Автоматическое добавление JWT токена
+- Централизованная обработка ошибок
+
+## Виртуальная система платежей
+
+Для курсовой работы используется фиктивная система:
+- Каждый пользователь получает 10000₽ при регистрации
+- Баланс отображается в навбаре
+- Донаты списываются с виртуального баланса
+- Проверка достаточности средств перед донатом
+
+## Категории кампаний
+- Medical - Медицина
+- Education - Образование
+- Emergency - Экстренная помощь
+- Creative - Творчество
+- Community - Общественные проекты
+- Other - Другое
+
+## Автор
+Роберт Назарян

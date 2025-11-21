@@ -1,0 +1,62 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  box-shadow: var(--shadow);
+  z-index: 1000;
+}
+
+.navbar-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+.navbar-menu {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.navbar-link {
+  color: var(--text-color);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.navbar-link:hover {
+  color: var(--primary-color);
+}
+
+.navbar-user {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.navbar-balance {
+  font-weight: bold;
+  color: var(--success-color);
+}
+
+.navbar-username {
+  color: var(--text-light);
+}
+
+.btn-sm {
+  padding: 6px 12px;
+  font-size: 14px;
+}

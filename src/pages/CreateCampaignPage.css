@@ -1,0 +1,50 @@
+.create-campaign-page {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.create-container {
+  background: white;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+}
+
+.create-container h1 {
+  margin-bottom: 10px;
+}
+
+.create-container p {
+  color: var(--text-light);
+  margin-bottom: 30px;
+}
+
+.campaign-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.form-actions {
+  display: flex;
+  gap: 15px;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+  
+  .create-container {
+    padding: 20px;
+  }
+}
