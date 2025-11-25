@@ -1,41 +1,42 @@
-import { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import { campaignAPI } from '../services/api'
-import CampaignCard from '../components/CampaignCard'
-import './MyCampaignsPage.css'
+import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { campaignAPI } from '../services/api';
+import CampaignCard from '../components/CampaignCard';
+import { Campaign } from '../types';
+import './MyCampaignsPage.css';
 
 function MyCampaignsPage() {
-  const [campaigns, setCampaigns] = useState([])
-  const [loading, setLoading] = useState(true)
+  const [campaigns, setCampaigns] = useState<Campaign[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    loadMyCampaigns()
-  }, [])
+    loadMyCampaigns();
+  }, []);
 
   const loadMyCampaigns = async () => {
     try {
-      const response = await campaignAPI.getMyCampaigns()
-      setCampaigns(response.data)
+      const response = await campaignAPI.getMyCampaigns();
+      setCampaigns(response.data);
     } catch (error) {
-      console.error('Error loading campaigns:', error)
+      console.error('Error loading campaigns:', error);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
-  const handleDelete = async (id) => {
-    if (!window.confirm('Удалить кампанию?')) return
+  const handleDelete = async (id: number) => {
+    if (!window.confirm('Удалить кампанию?')) return;
 
     try {
-      await campaignAPI.delete(id)
-      setCampaigns(campaigns.filter(c => c.id !== id))
-      alert('Кампания удалена')
+      await campaignAPI.delete(id);
+      setCampaigns(campaigns.filter(c => c.id !== id));
+      alert('Кампания удалена');
     } catch (error) {
-      alert('Ошибка при удалении')
+      alert('Ошибка при удалении');
     }
-  }
+  };
 
-  if (loading) return <div className="loading">Загрузка...</div>
+  if (loading) return <div className="loading">Загрузка...</div>;
 
   return (
     <div className="my-campaigns-page">
@@ -77,7 +78,7 @@ function MyCampaignsPage() {
         </div>
       )}
     </div>
-  )
+  );
 }
 
-export default MyCampaignsPage
+export default MyCampaignsPage;

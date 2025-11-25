@@ -1,45 +1,46 @@
-import { useState, useEffect } from 'react'
-import { useAuth } from '../context/AuthContext'
-import { donationAPI } from '../services/api'
-import './ProfilePage.css'
+import { useState, useEffect } from 'react';
+import { useAuth } from '../context/AuthContext';
+import { donationAPI } from '../services/api';
+import { Donation } from '../types';
+import './ProfilePage.css';
 
 function ProfilePage() {
-  const { user } = useAuth()
-  const [donations, setDonations] = useState([])
-  const [loading, setLoading] = useState(true)
+  const { user } = useAuth();
+  const [donations, setDonations] = useState<Donation[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    loadDonations()
-  }, [])
+    loadDonations();
+  }, []);
 
   const loadDonations = async () => {
     try {
-      const response = await donationAPI.getMyDonations()
-      setDonations(response.data)
+      const response = await donationAPI.getMyDonations();
+      setDonations(response.data);
     } catch (error) {
-      console.error('Error loading donations:', error)
+      console.error('Error loading donations:', error);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
-  const totalDonated = donations.reduce((sum, d) => sum + d.amount, 0)
+  const totalDonated = donations.reduce((sum, d) => sum + d.amount, 0);
 
-  if (loading) return <div className="loading">Загрузка...</div>
+  if (loading) return <div className="loading">Загрузка...</div>;
 
   return (
     <div className="profile-page">
       <div className="profile-container">
         <div className="profile-header card">
           <div className="avatar">
-            {user?.fullName?.charAt(0).toUpperCase()}
+            {user?.fullName.charAt(0).toUpperCase()}
           </div>
           <div className="user-info">
             <h1>{user?.fullName}</h1>
             <p>{user?.email}</p>
             <div className="stats">
               <div className="stat-item">
-                <span className="stat-value">{user?.virtualBalance?.toFixed(2)} ₽</span>
+                <span className="stat-value">{user?.virtualBalance.toFixed(2)} ₽</span>
                 <span className="stat-label">Баланс</span>
               </div>
               <div className="stat-item">
@@ -79,7 +80,7 @@ function ProfilePage() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default ProfilePage
+export default ProfilePage;

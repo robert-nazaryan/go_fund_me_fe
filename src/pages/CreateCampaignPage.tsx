@@ -1,53 +1,62 @@
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { campaignAPI } from '../services/api'
-import './CreateCampaignPage.css'
+import { useState, FormEvent, ChangeEvent } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { campaignAPI } from '../services/api';
+import { CampaignCategory } from '../types';
+import './CreateCampaignPage.css';
+
+interface FormData {
+  title: string;
+  description: string;
+  goalAmount: string;
+  category: CampaignCategory;
+  imageUrl: string;
+}
 
 function CreateCampaignPage() {
-  const navigate = useNavigate()
-  const [formData, setFormData] = useState({
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState<FormData>({
     title: '',
     description: '',
     goalAmount: '',
-    category: 'MEDICAL',
+    category: CampaignCategory.MEDICAL,
     imageUrl: ''
-  })
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState('')
+  });
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
   const categories = [
-    { value: 'MEDICAL', label: '🏥 Медицина' },
-    { value: 'EDUCATION', label: '📚 Образование' },
-    { value: 'EMERGENCY', label: '🚨 Срочная помощь' },
-    { value: 'CREATIVE', label: '🎨 Творчество' },
-    { value: 'CHARITY', label: '❤️ Благотворительность' },
-    { value: 'OTHER', label: '📦 Другое' }
-  ]
+    { value: CampaignCategory.MEDICAL, label: '🏥 Медицина' },
+    { value: CampaignCategory.EDUCATION, label: '📚 Образование' },
+    { value: CampaignCategory.EMERGENCY, label: '🚨 Срочная помощь' },
+    { value: CampaignCategory.CREATIVE, label: '🎨 Творчество' },
+    { value: CampaignCategory.CHARITY, label: '❤️ Благотворительность' },
+    { value: CampaignCategory.OTHER, label: '📦 Другое' }
+  ];
 
-  const handleChange = (e) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
-    })
-  }
+    });
+  };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    setError('')
-    setLoading(true)
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setError('');
+    setLoading(true);
 
     try {
       const response = await campaignAPI.create({
         ...formData,
         goalAmount: parseFloat(formData.goalAmount)
-      })
-      navigate(`/campaigns/${response.data.id}`)
+      });
+      navigate(`/campaigns/${response.data.id}`);
     } catch (err) {
-      setError('Ошибка при создании кампании')
+      setError('Ошибка при создании кампании');
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   return (
     <div className="create-campaign-page">
@@ -77,7 +86,7 @@ function CreateCampaignPage() {
               value={formData.description}
               onChange={handleChange}
               required
-              rows="8"
+              rows={8}
               placeholder="Подробно опишите вашу ситуацию..."
             />
           </div>
@@ -139,7 +148,7 @@ function CreateCampaignPage() {
         </form>
       </div>
     </div>
-  )
+  );
 }
 
-export default CreateCampaignPage
+export default CreateCampaignPage;
