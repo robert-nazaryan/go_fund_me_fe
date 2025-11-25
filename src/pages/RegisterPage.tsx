@@ -1,6 +1,7 @@
 import { useState, FormEvent, ChangeEvent } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { useLanguage } from '../context/LanguageContext';
 import './AuthPages.css';
 
 interface FormData {
@@ -10,6 +11,7 @@ interface FormData {
 }
 
 function RegisterPage() {
+  const { t } = useLanguage();
   const [formData, setFormData] = useState<FormData>({
     email: '',
     password: '',
@@ -17,7 +19,7 @@ function RegisterPage() {
   });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  
+
   const { register } = useAuth();
   const navigate = useNavigate();
 
@@ -37,66 +39,66 @@ function RegisterPage() {
       await register(formData);
       navigate('/');
     } catch (err) {
-      setError('Ошибка регистрации');
+      setError(t.auth.registerError);
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="auth-page">
-      <div className="auth-card">
-        <h2>Регистрация</h2>
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label className="form-label">Полное имя</label>
-            <input
-              type="text"
-              name="fullName"
-              className="form-input"
-              value={formData.fullName}
-              onChange={handleChange}
-              required
-            />
-          </div>
+      <div className="auth-page">
+        <div className="auth-card">
+          <h2>{t.auth.register}</h2>
+          <form onSubmit={handleSubmit}>
+            <div className="form-group">
+              <label className="form-label">{t.auth.fullName}</label>
+              <input
+                  type="text"
+                  name="fullName"
+                  className="form-input"
+                  value={formData.fullName}
+                  onChange={handleChange}
+                  required
+              />
+            </div>
 
-          <div className="form-group">
-            <label className="form-label">Email</label>
-            <input
-              type="email"
-              name="email"
-              className="form-input"
-              value={formData.email}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          
-          <div className="form-group">
-            <label className="form-label">Пароль</label>
-            <input
-              type="password"
-              name="password"
-              className="form-input"
-              value={formData.password}
-              onChange={handleChange}
-              required
-              minLength={6}
-            />
-          </div>
+            <div className="form-group">
+              <label className="form-label">{t.auth.email}</label>
+              <input
+                  type="email"
+                  name="email"
+                  className="form-input"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+              />
+            </div>
 
-          {error && <div className="error-message">{error}</div>}
+            <div className="form-group">
+              <label className="form-label">{t.auth.password}</label>
+              <input
+                  type="password"
+                  name="password"
+                  className="form-input"
+                  value={formData.password}
+                  onChange={handleChange}
+                  required
+                  minLength={6}
+              />
+            </div>
 
-          <button type="submit" className="btn btn-primary" disabled={loading}>
-            {loading ? 'Загрузка...' : 'Зарегистрироваться'}
-          </button>
-        </form>
-        
-        <p className="auth-link">
-          Уже есть аккаунт? <Link to="/login">Войти</Link>
-        </p>
+            {error && <div className="error-message">{error}</div>}
+
+            <button type="submit" className="btn btn-primary" disabled={loading}>
+              {loading ? t.auth.loading : t.auth.registerButton}
+            </button>
+          </form>
+
+          <p className="auth-link">
+            {t.auth.haveAccount} <Link to="/login">{t.auth.login}</Link>
+          </p>
+        </div>
       </div>
-    </div>
   );
 }
 

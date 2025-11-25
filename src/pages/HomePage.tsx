@@ -2,9 +2,11 @@ import { useState, useEffect } from 'react';
 import { campaignAPI } from '../services/api';
 import CampaignCard from '../components/CampaignCard';
 import { Campaign } from '../types';
+import { useLanguage } from '../context/LanguageContext';
 import './HomePage.css';
 
 function HomePage() {
+  const { t } = useLanguage();
   const [campaigns, setCampaigns] = useState<Campaign[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -23,24 +25,24 @@ function HomePage() {
     }
   };
 
-  if (loading) return <div className="loading">Загрузка...</div>;
+  if (loading) return <div className="loading">{t.common.loading}</div>;
 
   return (
-    <div className="home-page">
-      <div className="home-header">
-        <h1>Активные кампании</h1>
+      <div className="home-page">
+        <div className="home-header">
+          <h1>{t.home.title}</h1>
+        </div>
+
+        <div className="campaigns-grid">
+          {campaigns.length === 0 ? (
+              <p>{t.home.noCampaigns}</p>
+          ) : (
+              campaigns.map(campaign => (
+                  <CampaignCard key={campaign.id} campaign={campaign} />
+              ))
+          )}
+        </div>
       </div>
-      
-      <div className="campaigns-grid">
-        {campaigns.length === 0 ? (
-          <p>Кампаний пока нет</p>
-        ) : (
-          campaigns.map(campaign => (
-            <CampaignCard key={campaign.id} campaign={campaign} />
-          ))
-        )}
-      </div>
-    </div>
   );
 }
 
