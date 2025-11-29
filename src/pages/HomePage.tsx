@@ -29,10 +29,6 @@ function HomePage() {
 
   return (
       <div className="home-page">
-        <div className="home-header">
-          <h1>{t.home.title}</h1>
-        </div>
-
         <div className="campaigns-grid">
           {campaigns.length === 0 ? (
               <p>{t.home.noCampaigns}</p>

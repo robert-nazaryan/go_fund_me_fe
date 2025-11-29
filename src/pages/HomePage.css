@@ -1,6 +1,6 @@
 .home-page {
   padding: 40px 20px;
-  max-width: 1400px;
+  max-width: 100%;
   margin: 0 auto;
 }
 
@@ -8,6 +8,9 @@
   margin-bottom: 50px;
   text-align: center;
   position: relative;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .home-header h1 {
@@ -50,8 +53,10 @@
 .campaigns-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
+  gap: 40px;
   margin-bottom: 40px;
+  max-width: 100%;
+  padding: 0 20px;
   animation: fadeInUp 0.8s ease-out 0.5s both;
 }
 
@@ -66,10 +71,18 @@
   }
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1400px) {
+  .campaigns-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 35px;
+    padding: 0 40px;
+  }
+}
+
+@media (max-width: 1100px) {
   .campaigns-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
+    gap: 35px;
   }
 }
 
@@ -77,13 +90,14 @@
   .home-page {
     padding: 20px 15px;
   }
-  
+
   .home-header h1 {
     font-size: 32px;
   }
-  
+
   .campaigns-grid {
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: 30px;
+    padding: 0 15px;
   }
 }

@@ -10,7 +10,8 @@
   flex-direction: column;
   position: relative;
   background: linear-gradient(white, white) padding-box,
-              linear-gradient(135deg, #667eea22 0%, #764ba222 100%) border-box;
+  linear-gradient(135deg, #667eea22 0%, #764ba222 100%) border-box;
+  cursor: pointer;
 }
 
 .campaign-card::before {
@@ -35,9 +36,9 @@
 }
 
 .campaign-card:hover {
-  transform: translateY(-12px) scale(1.02);
-  box-shadow: 0 30px 60px -12px rgba(102, 126, 234, 0.35), 
-              0 18px 36px -18px rgba(118, 75, 162, 0.25);
+  transform: translateY(-8px) scale(1.01);
+  box-shadow: 0 25px 50px -12px rgba(102, 126, 234, 0.35),
+  0 15px 30px -15px rgba(118, 75, 162, 0.25);
 }
 
 .campaign-image-wrapper {
@@ -56,7 +57,7 @@
 }
 
 .campaign-card:hover .campaign-image {
-  transform: scale(1.1) rotate(2deg);
+  transform: scale(1.08);
 }
 
 .campaign-image-wrapper::after {
@@ -178,10 +179,10 @@
   left: 0;
   bottom: 0;
   right: 0;
-  background: linear-gradient(90deg, 
-    transparent, 
-    rgba(255, 255, 255, 0.4), 
-    transparent);
+  background: linear-gradient(90deg,
+  transparent,
+  rgba(255, 255, 255, 0.4),
+  transparent);
   animation: shimmer 2s infinite;
 }
 
@@ -213,13 +214,13 @@
 
 .campaign-footer {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   padding-top: 20px;
   margin-top: auto;
   border-top: 2px solid transparent;
   background: linear-gradient(white, white) padding-box,
-              linear-gradient(90deg, #667eea 0%, #764ba2 100%) border-box;
+  linear-gradient(90deg, #667eea 0%, #764ba2 100%) border-box;
   border-image: linear-gradient(90deg, #667eea 0%, #764ba2 100%) 1;
 }
 

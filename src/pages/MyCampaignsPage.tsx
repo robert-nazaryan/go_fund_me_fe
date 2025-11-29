@@ -26,7 +26,9 @@ function MyCampaignsPage() {
     }
   };
 
-  const handleDelete = async (id: number) => {
+  const handleDelete = async (e: React.MouseEvent, id: number) => {
+    e.stopPropagation();
+
     if (!window.confirm(t.myCampaigns.confirmDelete)) return;
 
     try {
@@ -65,11 +67,12 @@ function MyCampaignsPage() {
                       <Link
                           to={`/campaigns/${campaign.id}`}
                           className="btn btn-primary btn-sm"
+                          onClick={(e) => e.stopPropagation()}
                       >
                         {t.myCampaigns.view}
                       </Link>
                       <button
-                          onClick={() => handleDelete(campaign.id)}
+                          onClick={(e) => handleDelete(e, campaign.id)}
                           className="btn btn-danger btn-sm"
                       >
                         {t.myCampaigns.delete}

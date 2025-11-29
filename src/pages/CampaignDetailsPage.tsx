@@ -1,194 +1,228 @@
-import { useState, useEffect, FormEvent, ChangeEvent } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { campaignAPI, donationAPI } from '../services/api';
-import { useAuth } from '../context/AuthContext';
+import { Campaign, Donation } from '../types';
 import { useLanguage } from '../context/LanguageContext';
-import { Campaign, Donation, CampaignCategory } from '../types';
 import './CampaignDetailsPage.css';
 
 function CampaignDetailsPage() {
   const { t } = useLanguage();
   const { id } = useParams<{ id: string }>();
-  const navigate = useNavigate();
-  const { user, isAuthenticated } = useAuth();
-
   const [campaign, setCampaign] = useState<Campaign | null>(null);
   const [donations, setDonations] = useState<Donation[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [donationAmount, setDonationAmount] = useState('');
-  const [donationMessage, setDonationMessage] = useState('');
+  const [amount, setAmount] = useState('');
+  const [message, setMessage] = useState('');
   const [isAnonymous, setIsAnonymous] = useState(false);
-  const [donating, setDonating] = useState(false);
-  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(true);
+  const [selectedImage, setSelectedImage] = useState<string>('');
 
   useEffect(() => {
-    loadData();
+    loadCampaignDetails();
   }, [id]);
 
-  const loadData = async () => {
+  const loadCampaignDetails = async () => {
     try {
-      const [campRes, donRes] = await Promise.all([
+      const [campaignRes, donationsRes] = await Promise.all([
         campaignAPI.getById(Number(id)),
         donationAPI.getByCampaign(Number(id))
       ]);
-      setCampaign(campRes.data);
-      setDonations(donRes.data);
-    } catch (err) {
-      console.error(err);
+      setCampaign(campaignRes.data);
+      setDonations(donationsRes.data);
+      if (campaignRes.data.coverImage) {
+        setSelectedImage(`http://localhost:8080${campaignRes.data.coverImage}`);
+      }
+    } catch (error) {
+      console.error('Error loading campaign:', error);
     } finally {
       setLoading(false);
     }
   };
 
-  const handleDonate = async (e: FormEvent<HTMLFormElement>) => {
+  const handleDonate = async (e: React.FormEvent) => {
     e.preventDefault();
-
-    if (!isAuthenticated) {
-      navigate('/login');
-      return;
-    }
-
-    setError('');
-    setDonating(true);
-
-    const amount = parseFloat(donationAmount);
-
-    if (amount <= 0 || amount > (user?.virtualBalance || 0)) {
-      setError(t.campaign.checkAmount);
-      setDonating(false);
-      return;
-    }
 
     try {
       await donationAPI.create({
         campaignId: Number(id),
-        amount,
-        message: donationMessage,
+        amount: parseFloat(amount),
+        message: message || undefined,
         isAnonymous
       });
 
-      alert(t.campaign.thankYou);
-      window.location.reload();
-    } catch (err) {
-      setError(t.campaign.donationError);
-    } finally {
-      setDonating(false);
+      alert(t.campaignDetails.donationSuccess);
+      setAmount('');
+      setMessage('');
+      setIsAnonymous(false);
+      loadCampaignDetails();
+    } catch (error) {
+      alert(t.campaignDetails.donationError);
     }
   };
 
   if (loading) return <div className="loading">{t.common.loading}</div>;
-  if (!campaign) return <div>{t.common.error}</div>;
+  if (!campaign) return <div className="error">{t.campaignDetails.notFound}</div>;
 
-  const categories: Record<CampaignCategory, string> = {
-    [CampaignCategory.MEDICAL]: t.campaign.categories.MEDICAL,
-    [CampaignCategory.EDUCATION]: t.campaign.categories.EDUCATION,
-    [CampaignCategory.EMERGENCY]: t.campaign.categories.EMERGENCY,
-    [CampaignCategory.CREATIVE]: t.campaign.categories.CREATIVE,
-    [CampaignCategory.CHARITY]: t.campaign.categories.CHARITY,
-    [CampaignCategory.OTHER]: t.campaign.categories.OTHER
+  const categoryNames: Record<string, string> = {
+    'MEDICAL': t.campaign.categories.MEDICAL,
+    'EDUCATION': t.campaign.categories.EDUCATION,
+    'EMERGENCY': t.campaign.categories.EMERGENCY,
+    'CREATIVE': t.campaign.categories.CREATIVE,
+    'CHARITY': t.campaign.categories.CHARITY,
+    'OTHER': t.campaign.categories.OTHER
   };
 
   return (
       <div className="campaign-details-page">
         <div className="details-container">
-          <div className="main-content">
-            {campaign.imageUrl && (
-                <img src={campaign.imageUrl} alt={campaign.title} className="detail-image" />
-            )}
+          <div className="details-left">
+            <div className="image-section">
+              {selectedImage && (
+                  <img
+                      src={selectedImage}
+                      alt={campaign.title}
+                      className="detail-image"
+                  />
+              )}
 
-            <div className="campaign-info">
-              <span className="category">{categories[campaign.category]}</span>
-              <h1>{campaign.title}</h1>
-              <p className="author">{t.campaign.author}: {campaign.userFullName}</p>
+              {campaign.galleryImages && campaign.galleryImages.length > 0 && (
+                  <div className="gallery-section">
+                    <h3 className="gallery-title">📸 {t.campaignDetails.gallery}</h3>
+                    <div className="gallery-grid">
+                      <div
+                          className={`gallery-item ${selectedImage === `http://localhost:8080${campaign.coverImage}` ? 'active' : ''}`}
+                          onClick={() => setSelectedImage(`http://localhost:8080${campaign.coverImage}`)}
+                      >
+                        <img
+                            src={`http://localhost:8080${campaign.coverImage}`}
+                            alt="Cover"
+                        />
+                        <div className="gallery-item-overlay">
+                          <span className="gallery-item-label">{t.campaignDetails.cover}</span>
+                        </div>
+                      </div>
 
-              <div className="progress-section">
+                      {campaign.galleryImages.map((imgPath, index) => (
+                          <div
+                              key={index}
+                              className={`gallery-item ${selectedImage === `http://localhost:8080${imgPath}` ? 'active' : ''}`}
+                              onClick={() => setSelectedImage(`http://localhost:8080${imgPath}`)}
+                          >
+                            <img
+                                src={`http://localhost:8080${imgPath}`}
+                                alt={`Gallery ${index + 1}`}
+                            />
+                            <div className="gallery-item-overlay">
+                              <span className="gallery-item-label">{index + 1}</span>
+                            </div>
+                          </div>
+                      ))}
+                    </div>
+                  </div>
+              )}
+            </div>
+
+            <div className="detail-card">
+              <span className="detail-category">{categoryNames[campaign.category]}</span>
+              <h1 className="detail-title">{campaign.title}</h1>
+
+              <div className="detail-author">
+                <span className="author-icon">👤</span>
+                <span>{t.campaignDetails.author}: <strong>{campaign.userFullName}</strong></span>
+              </div>
+
+              <div className="detail-progress">
                 <div className="progress-bar">
                   <div
                       className="progress-fill"
-                      style={{ width: `${Math.min(campaign.progressPercentage || 0, 100)}%` }}
+                      style={{ width: `${Math.min(campaign.progressPercentage, 100)}%` }}
                   />
                 </div>
-                <div className="stats">
-                  <div>
+                <div className="progress-stats">
+                  <div className="stat">
                     <strong>{campaign.currentAmount.toFixed(0)} ₽</strong>
-                    <span> {t.campaign.of} {campaign.goalAmount.toFixed(0)} ₽</span>
+                    <span>{t.campaignDetails.raised} {campaign.goalAmount.toFixed(0)} ₽</span>
                   </div>
-                  <div>{campaign.progressPercentage?.toFixed(0)}%</div>
+                  <div className="stat">
+                    <strong>{campaign.progressPercentage.toFixed(0)}%</strong>
+                    <span>{t.campaignDetails.funded}</span>
+                  </div>
                 </div>
               </div>
 
-              <div className="description">
-                <h3>{t.campaign.description}</h3>
-                <p>{campaign.description}</p>
+              <div className="detail-section">
+                <h2>{t.campaignDetails.description}</h2>
+                <p className="detail-description">{campaign.description}</p>
               </div>
             </div>
           </div>
 
-          <div className="sidebar">
-            {campaign.status === 'ACTIVE' && (
-                <div className="card">
-                  <h3>{t.campaign.support}</h3>
-                  {!isAuthenticated ? (
-                      <button className="btn btn-primary" onClick={() => navigate('/login')}>
-                        {t.navbar.login}
-                      </button>
-                  ) : (
-                      <form onSubmit={handleDonate}>
-                        <div className="form-group">
-                          <label>{t.campaign.amount} (₽)</label>
-                          <input
-                              type="number"
-                              className="form-input"
-                              value={donationAmount}
-                              onChange={(e: ChangeEvent<HTMLInputElement>) => setDonationAmount(e.target.value)}
-                              required
-                              min="1"
-                          />
-                          <small>{t.campaign.balance}: {user?.virtualBalance.toFixed(2)} ₽</small>
-                        </div>
-
-                        <div className="form-group">
-                          <label>{t.campaign.message}</label>
-                          <textarea
-                              className="form-textarea"
-                              value={donationMessage}
-                              onChange={(e: ChangeEvent<HTMLTextAreaElement>) => setDonationMessage(e.target.value)}
-                              rows={3}
-                          />
-                        </div>
-
-                        <label>
-                          <input
-                              type="checkbox"
-                              checked={isAnonymous}
-                              onChange={(e: ChangeEvent<HTMLInputElement>) => setIsAnonymous(e.target.checked)}
-                          />
-                          {' '}{t.campaign.anonymous}
-                        </label>
-
-                        {error && <div className="error-message">{error}</div>}
-
-                        <button type="submit" className="btn btn-success" disabled={donating}>
-                          {donating ? t.campaign.processing : `💰 ${t.campaign.donate}`}
-                        </button>
-                      </form>
-                  )}
+          <div className="details-right">
+            <div className="support-card">
+              <h2>{t.campaignDetails.support}</h2>
+              <form onSubmit={handleDonate} className="donate-form">
+                <div className="form-group">
+                  <label>{t.campaignDetails.amount}</label>
+                  <input
+                      type="number"
+                      value={amount}
+                      onChange={(e) => setAmount(e.target.value)}
+                      required
+                      min="1"
+                      placeholder="1000"
+                      className="form-input"
+                  />
+                  <p className="balance-info">
+                    {t.campaignDetails.balance}: {localStorage.getItem('balance') || '0'} ₽
+                  </p>
                 </div>
-            )}
 
-            <div className="card">
-              <h3>{t.campaign.donations} ({donations.length})</h3>
+                <div className="form-group">
+                  <label>{t.campaignDetails.message}</label>
+                  <textarea
+                      value={message}
+                      onChange={(e) => setMessage(e.target.value)}
+                      rows={4}
+                      placeholder={t.campaignDetails.messagePlaceholder}
+                      className="form-textarea"
+                  />
+                </div>
+
+                <div className="form-checkbox">
+                  <input
+                      type="checkbox"
+                      id="anonymous"
+                      checked={isAnonymous}
+                      onChange={(e) => setIsAnonymous(e.target.checked)}
+                  />
+                  <label htmlFor="anonymous">{t.campaignDetails.anonymous}</label>
+                </div>
+
+                <button type="submit" className="btn btn-donate">
+                  💰 {t.campaignDetails.donate}
+                </button>
+              </form>
+            </div>
+
+            <div className="donations-card">
+              <h2>{t.campaignDetails.donations} ({donations.length})</h2>
               {donations.length === 0 ? (
-                  <p>{t.campaign.noDonations}</p>
+                  <p className="no-donations">{t.campaignDetails.noDonations}</p>
               ) : (
                   <div className="donations-list">
-                    {donations.map(d => (
-                        <div key={d.id} className="donation-item">
-                          <div>
-                            <strong>{d.donorName}</strong>
-                            <span> {d.amount.toFixed(0)} ₽</span>
+                    {donations.map(donation => (
+                        <div key={donation.id} className="donation-item">
+                          <div className="donation-header">
+                      <span className="donation-author">
+                        {donation.isAnonymous ? t.campaignDetails.anonymousDonor : donation.donorName}
+                      </span>
+                            <span className="donation-amount">{donation.amount.toFixed(0)} ₽</span>
                           </div>
-                          {d.message && <p>{d.message}</p>}
+                          {donation.message && (
+                              <p className="donation-message">{donation.message}</p>
+                          )}
+                          <span className="donation-date">
+                      {new Date(donation.createdAt).toLocaleDateString()}
+                    </span>
                         </div>
                     ))}
                   </div>

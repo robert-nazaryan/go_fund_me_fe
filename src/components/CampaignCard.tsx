@@ -1,7 +1,7 @@
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Campaign, CampaignCategory } from '../types';
 import './CampaignCard.css';
-import {useLanguage} from "../context/LanguageContext.tsx";
+import { useLanguage } from "../context/LanguageContext.tsx";
 
 interface CampaignCardProps {
   campaign: Campaign;
@@ -9,6 +9,7 @@ interface CampaignCardProps {
 
 function CampaignCard({ campaign }: CampaignCardProps) {
   const { t } = useLanguage();
+  const navigate = useNavigate();
   const progressPercentage = campaign.progressPercentage || 0;
 
   const categoryNames: Record<CampaignCategory, string> = {
@@ -20,11 +21,15 @@ function CampaignCard({ campaign }: CampaignCardProps) {
     [CampaignCategory.OTHER]: t.campaign.categories.OTHER
   };
 
+  const handleClick = () => {
+    navigate(`/campaigns/${campaign.id}`);
+  };
+
   return (
-      <div className="campaign-card">
+      <div className="campaign-card" onClick={handleClick}>
         <div className="campaign-image-wrapper">
           <img
-              src={campaign.imageUrl || 'https://via.placeholder.com/400x300?text=No+Image'}
+              src={campaign.coverImage ? `http://localhost:8080${campaign.coverImage}` : 'https://via.placeholder.com/400x300?text=No+Image'}
               alt={campaign.title}
               className="campaign-image"
           />
@@ -51,9 +56,6 @@ function CampaignCard({ campaign }: CampaignCardProps) {
 
           <div className="campaign-footer">
             <span className="campaign-author">{campaign.userFullName}</span>
-            <Link to={`/campaigns/${campaign.id}`} className="campaign-view-btn">
-              {t.campaign.viewMore}
-            </Link>
           </div>
         </div>
       </div>

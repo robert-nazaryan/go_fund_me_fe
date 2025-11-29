@@ -30,7 +30,8 @@ export interface Campaign {
   description: string;
   goalAmount: number;
   currentAmount: number;
-  imageUrl?: string;
+  coverImage?: string;
+  galleryImages?: string[];
   category: CampaignCategory;
   status: CampaignStatus;
   deadline?: string;

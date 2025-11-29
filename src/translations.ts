@@ -74,12 +74,20 @@ export const translations = {
             goalLabel: 'Целевая сумма (₽)',
             goalPlaceholder: '50000',
             categoryLabel: 'Категория',
-            imageLabel: 'URL изображения',
-            imagePlaceholder: 'https://example.com/image.jpg',
+            coverImageLabel: '📸 Фото обложки',
+            coverImageDesc: 'Главное изображение кампании. Максимум 5MB.',
+            galleryLabel: '🖼️ Галерея фото',
+            galleryDesc: 'Дополнительные изображения (до 10 штук). Посетители смогут листать их.',
+            optional: 'необязательно',
+            photos: 'фото',
+            remove: 'Удалить',
             cancel: 'Отмена',
             create: 'Создать кампанию',
             creating: 'Создание...',
-            error: 'Ошибка при создании кампании'
+            error: 'Ошибка при создании кампании',
+            coverRequired: 'Обязательно загрузите фото обложки',
+            fileTooLarge: 'Размер файла не должен превышать 5MB',
+            maxPhotos: 'Максимум 10 фото в галерее'
         },
 
         // My Campaigns
@@ -109,6 +117,28 @@ export const translations = {
             loading: 'Загрузка...',
             error: 'Ошибка',
             required: 'Обязательно'
+        },
+
+        campaignDetails: {
+            author: 'Автор',
+            raised: 'из',
+            funded: 'собрано',
+            description: 'Описание',
+            support: 'Поддержать',
+            amount: 'Сумма (₽)',
+            balance: 'Баланс',
+            message: 'Сообщение',
+            messagePlaceholder: 'Напишите слова поддержки...',
+            anonymous: 'Анонимный донат',
+            donate: 'Поддержать',
+            donations: 'Пожертвования',
+            noDonations: 'Пока нет пожертвований',
+            anonymousDonor: 'Аноним',
+            notFound: 'Кампания не найдена',
+            donationSuccess: 'Спасибо за поддержку!',
+            donationError: 'Ошибка при создании пожертвования',
+            gallery: 'Галерея фото',
+            cover: 'Обложка'
         }
     },
 
@@ -187,12 +217,20 @@ export const translations = {
             goalLabel: 'Target Amount (₽)',
             goalPlaceholder: '50000',
             categoryLabel: 'Category',
-            imageLabel: 'Image URL',
-            imagePlaceholder: 'https://example.com/image.jpg',
+            coverImageLabel: '📸 Cover Photo',
+            coverImageDesc: 'Main campaign image. Maximum 5MB.',
+            galleryLabel: '🖼️ Photo Gallery',
+            galleryDesc: 'Additional images (up to 10). Visitors can browse them.',
+            optional: 'optional',
+            photos: 'photos',
+            remove: 'Remove',
             cancel: 'Cancel',
             create: 'Create Campaign',
             creating: 'Creating...',
-            error: 'Error creating campaign'
+            error: 'Error creating campaign',
+            coverRequired: 'Cover photo is required',
+            fileTooLarge: 'File size must not exceed 5MB',
+            maxPhotos: 'Maximum 10 photos in gallery'
         },
 
         // My Campaigns
@@ -222,6 +260,28 @@ export const translations = {
             loading: 'Loading...',
             error: 'Error',
             required: 'Required'
+        },
+
+        campaignDetails: {
+            author: 'Author',
+            raised: 'of',
+            funded: 'funded',
+            description: 'Description',
+            support: 'Support',
+            amount: 'Amount (₽)',
+            balance: 'Balance',
+            message: 'Message',
+            messagePlaceholder: 'Write words of support...',
+            anonymous: 'Anonymous donation',
+            donate: 'Donate',
+            donations: 'Donations',
+            noDonations: 'No donations yet',
+            anonymousDonor: 'Anonymous',
+            notFound: 'Campaign not found',
+            donationSuccess: 'Thank you for your support!',
+            donationError: 'Error creating donation',
+            gallery: 'Photo Gallery',
+            cover: 'Cover'
         }
     },
 
@@ -300,12 +360,20 @@ export const translations = {
             goalLabel: 'Նպատակային գումար (₽)',
             goalPlaceholder: '50000',
             categoryLabel: 'Կատեգորիա',
-            imageLabel: 'Նկարի URL',
-            imagePlaceholder: 'https://example.com/image.jpg',
+            coverImageLabel: '📸 Կազմի նկար',
+            coverImageDesc: 'Արշավի հիմնական պատկեր։ Առավելագույնը 5MB։',
+            galleryLabel: '🖼️ Լուսանկարների պատկերասրահ',
+            galleryDesc: 'Լրացուցիչ պատկերներ (մինչև 10 հատ)։ Այցելուները կարող են դրանք դիտել։',
+            optional: 'ոչ պարտադիր',
+            photos: 'լուսանկար',
+            remove: 'Հեռացնել',
             cancel: 'Չեղարկել',
             create: 'Ստեղծել արշավ',
             creating: 'Ստեղծում...',
-            error: 'Արշավի ստեղծման սխալ'
+            error: 'Արշավի ստեղծման սխալ',
+            coverRequired: 'Կազմի լուսանկարը պարտադիր է',
+            fileTooLarge: 'Ֆայլի չափը չպետք է գերազանցի 5MB',
+            maxPhotos: 'Առավելագույնը 10 լուսանկար պատկերասրահում'
         },
 
         // My Campaigns
@@ -335,6 +403,28 @@ export const translations = {
             loading: 'Բեռնում...',
             error: 'Սխալ',
             required: 'Պարտադիր'
+        },
+
+        campaignDetails: {
+            author: 'Հեղինակ',
+            raised: '-ից',
+            funded: 'հավաքված',
+            description: 'Նկարագրություն',
+            support: 'Աջակցել',
+            amount: 'Գումար (₽)',
+            balance: 'Մնացորդ',
+            message: 'Հաղորդագրություն',
+            messagePlaceholder: 'Գրեք աջակցության խոսքեր...',
+            anonymous: 'Անանուն նվիրատվություն',
+            donate: 'Նվիրաբերել',
+            donations: 'Նվիրատվություններ',
+            noDonations: 'Դեռ նվիրատվություններ չկան',
+            anonymousDonor: 'Անանուն',
+            notFound: 'Արշավը չի գտնվել',
+            donationSuccess: 'Շնորհակալություն ձեր աջակցության համար',
+            donationError: 'Նվիրատվության ստեղծման սխալ',
+            gallery: 'Լուսանկարների պատկերասրահ',
+            cover: 'Կազմ'
         }
     }
 };
