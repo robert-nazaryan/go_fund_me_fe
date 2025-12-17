@@ -19,6 +19,7 @@ function CreateCampaignPage() {
   const [coverPreview, setCoverPreview] = useState<string>('');
   const [galleryImages, setGalleryImages] = useState<File[]>([]);
   const [galleryPreviews, setGalleryPreviews] = useState<string[]>([]);
+  const [document, setDocument] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
@@ -75,6 +76,18 @@ function CreateCampaignPage() {
     setError('');
   };
 
+  const handleDocumentChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      if (file.size > 10 * 1024 * 1024) {
+        setError(t.createCampaign.documentTooLarge);
+        return;
+      }
+      setDocument(file);
+      setError('');
+    }
+  };
+
   const removeGalleryImage = (index: number) => {
     URL.revokeObjectURL(galleryPreviews[index]);
     setGalleryImages(prev => prev.filter((_, i) => i !== index));
@@ -87,6 +100,10 @@ function CreateCampaignPage() {
     }
     setCoverImage(null);
     setCoverPreview('');
+  };
+
+  const removeDocument = () => {
+    setDocument(null);
   };
 
   const handleSubmit = async (e: FormEvent) => {
@@ -111,6 +128,10 @@ function CreateCampaignPage() {
       galleryImages.forEach(image => {
         formDataToSend.append('galleryImages', image);
       });
+
+      if (document) {
+        formDataToSend.append('document', document);
+      }
 
       const token = localStorage.getItem('token');
       const response = await fetch('http://localhost:8080/api/campaigns', {
@@ -356,6 +377,61 @@ function CreateCampaignPage() {
                   }}>
                     {galleryImages.length} / 10 {t.createCampaign.photos}
                   </p>
+              )}
+            </div>
+
+            <div className="form-group">
+              <label className="form-label">
+                {t.createCampaign.documentLabel} <span style={{color: '#95a5a6', fontSize: '14px'}}>({t.createCampaign.optional})</span>
+              </label>
+              <p style={{fontSize: '14px', color: '#7f8c8d', marginBottom: '12px'}}>
+                {t.createCampaign.documentDesc}
+              </p>
+
+              <input
+                  type="file"
+                  accept=".pdf,.doc,.docx"
+                  onChange={handleDocumentChange}
+                  style={{
+                    padding: '12px',
+                    border: '2px dashed #e5e7eb',
+                    borderRadius: '8px',
+                    cursor: 'pointer',
+                    background: '#f8f9fa',
+                    width: '100%'
+                  }}
+              />
+
+              {document && (
+                  <div style={{
+                    marginTop: '16px',
+                    padding: '12px',
+                    background: '#f8f9fa',
+                    borderRadius: '8px',
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center'
+                  }}>
+                    <span style={{fontSize: '14px', fontWeight: '600'}}>
+                      📄 {document.name}
+                    </span>
+                    <button
+                        type="button"
+                        onClick={removeDocument}
+                        style={{
+                          background: 'rgba(231,76,60,0.9)',
+                          color: 'white',
+                          border: 'none',
+                          padding: '6px 12px',
+                          borderRadius: '6px',
+                          cursor: 'pointer',
+                          fontSize: '14px',
+                          fontWeight: '600'
+                        }}
+                    >
+                      ✕ {t.createCampaign.remove}
+                    </button>
+                  </div>
               )}
             </div>
 

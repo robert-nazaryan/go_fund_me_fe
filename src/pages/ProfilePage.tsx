@@ -42,11 +42,11 @@ function ProfilePage() {
               <p>{user?.email}</p>
               <div className="stats">
                 <div className="stat-item">
-                  <span className="stat-value">{user?.virtualBalance.toFixed(2)} ₽</span>
+                  <span className="stat-value">{user?.virtualBalance.toFixed(2)} ֏</span>
                   <span className="stat-label">{t.profile.balance}</span>
                 </div>
                 <div className="stat-item">
-                  <span className="stat-value">{totalDonated.toFixed(2)} ₽</span>
+                  <span className="stat-value">{totalDonated.toFixed(2)} ֏</span>
                   <span className="stat-label">{t.profile.totalDonated}</span>
                 </div>
                 <div className="stat-item">
@@ -73,7 +73,7 @@ function ProfilePage() {
                     </span>
                         </div>
                         <div className="donation-amount">
-                          {donation.amount.toFixed(0)} ₽
+                          {donation.amount.toFixed(0)} ֏
                         </div>
                       </div>
                   ))}

@@ -65,11 +65,11 @@ function MyCampaignsPage() {
                     <CampaignCard campaign={campaign} />
                     <div className="campaign-actions">
                       <Link
-                          to={`/campaigns/${campaign.id}`}
+                          to={`/edit-campaign/${campaign.id}`}
                           className="btn btn-primary btn-sm"
                           onClick={(e) => e.stopPropagation()}
                       >
-                        {t.myCampaigns.view}
+                        {t.myCampaigns.edit}
                       </Link>
                       <button
                           onClick={(e) => handleDelete(e, campaign.id)}

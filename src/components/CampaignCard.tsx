@@ -48,7 +48,7 @@ function CampaignCard({ campaign }: CampaignCardProps) {
             </div>
             <div className="progress-info">
             <span className="progress-amount">
-              <strong>{campaign.currentAmount.toFixed(0)} ₽</strong> {t.campaign.of} {campaign.goalAmount.toFixed(0)} ₽
+              <strong>{campaign.currentAmount.toFixed(0)} ֏</strong> {t.campaign.of} {campaign.goalAmount.toFixed(0)} ֏
             </span>
               <span className="progress-percentage">{progressPercentage.toFixed(0)}%</span>
             </div>

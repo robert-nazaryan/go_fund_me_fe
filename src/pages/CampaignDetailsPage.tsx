@@ -59,6 +59,12 @@ function CampaignDetailsPage() {
     }
   };
 
+  const handleDownloadDocument = () => {
+    if (campaign?.documentUrl) {
+      window.open(`http://localhost:8080${campaign.documentUrl}`, '_blank');
+    }
+  };
+
   if (loading) return <div className="loading">{t.common.loading}</div>;
   if (!campaign) return <div className="error">{t.campaignDetails.notFound}</div>;
 
@@ -139,8 +145,8 @@ function CampaignDetailsPage() {
                 </div>
                 <div className="progress-stats">
                   <div className="stat">
-                    <strong>{campaign.currentAmount.toFixed(0)} ₽</strong>
-                    <span>{t.campaignDetails.raised} {campaign.goalAmount.toFixed(0)} ₽</span>
+                    <strong>{campaign.currentAmount.toFixed(0)} ֏</strong>
+                    <span>{t.campaignDetails.raised} {campaign.goalAmount.toFixed(0)} ֏</span>
                   </div>
                   <div className="stat">
                     <strong>{campaign.progressPercentage.toFixed(0)}%</strong>
@@ -148,6 +154,18 @@ function CampaignDetailsPage() {
                   </div>
                 </div>
               </div>
+
+              {campaign.documentUrl && (
+                  <div className="detail-section">
+                    <button
+                        onClick={handleDownloadDocument}
+                        className="btn btn-primary"
+                        style={{ width: '100%', marginBottom: '20px' }}
+                    >
+                      📄 {t.campaignDetails.downloadDocument}
+                    </button>
+                  </div>
+              )}
 
               <div className="detail-section">
                 <h2>{t.campaignDetails.description}</h2>
@@ -172,7 +190,7 @@ function CampaignDetailsPage() {
                       className="form-input"
                   />
                   <p className="balance-info">
-                    {t.campaignDetails.balance}: {localStorage.getItem('balance') || '0'} ₽
+                    {t.campaignDetails.balance}: {localStorage.getItem('balance') || '0'} ֏
                   </p>
                 </div>
 
@@ -198,7 +216,7 @@ function CampaignDetailsPage() {
                 </div>
 
                 <button type="submit" className="btn btn-donate">
-                  💰 {t.campaignDetails.donate}
+                  {t.campaignDetails.donate}
                 </button>
               </form>
             </div>
@@ -215,7 +233,7 @@ function CampaignDetailsPage() {
                       <span className="donation-author">
                         {donation.isAnonymous ? t.campaignDetails.anonymousDonor : donation.donorName}
                       </span>
-                            <span className="donation-amount">{donation.amount.toFixed(0)} ₽</span>
+                            <span className="donation-amount">{donation.amount.toFixed(0)} ֏</span>
                           </div>
                           {donation.message && (
                               <p className="donation-message">{donation.message}</p>

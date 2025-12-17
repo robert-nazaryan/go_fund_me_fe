@@ -87,7 +87,10 @@ export const translations = {
             error: 'Ошибка при создании кампании',
             coverRequired: 'Обязательно загрузите фото обложки',
             fileTooLarge: 'Размер файла не должен превышать 5MB',
-            maxPhotos: 'Максимум 10 фото в галерее'
+            maxPhotos: 'Максимум 10 фото в галерее',
+            documentLabel: '📄 Документ',
+            documentDesc: 'Загрузите документ (PDF, DOC, DOCX). Максимум 10MB.',
+            documentTooLarge: 'Размер документа не должен превышать 10MB'
         },
 
         // My Campaigns
@@ -100,7 +103,8 @@ export const translations = {
             delete: 'Удалить',
             confirmDelete: 'Удалить кампанию?',
             deleted: 'Кампания удалена',
-            deleteError: 'Ошибка при удалении'
+            deleteError: 'Ошибка при удалении',
+            edit: 'Редактировать'
         },
 
         // Profile
@@ -138,7 +142,20 @@ export const translations = {
             donationSuccess: 'Спасибо за поддержку!',
             donationError: 'Ошибка при создании пожертвования',
             gallery: 'Галерея фото',
-            cover: 'Обложка'
+            cover: 'Обложка',
+            downloadDocument: 'Скачать документ'
+        },
+
+        editCampaign: {
+            title: 'Редактировать кампанию',
+            subtitle: 'Обновите информацию о вашей кампании',
+            coverImageDesc: 'Загрузите новое изображение или оставьте текущее',
+            galleryDesc: 'Загрузите новые изображения или оставьте текущие',
+            existingDocument: 'Текущий документ',
+            loadError: 'Ошибка загрузки кампании',
+            error: 'Ошибка при обновлении кампании',
+            saving: 'Сохранение...',
+            save: 'Сохранить изменения'
         }
     },
 
@@ -230,7 +247,8 @@ export const translations = {
             error: 'Error creating campaign',
             coverRequired: 'Cover photo is required',
             fileTooLarge: 'File size must not exceed 5MB',
-            maxPhotos: 'Maximum 10 photos in gallery'
+            maxPhotos: 'Maximum 10 photos in gallery',
+            downloadDocument: 'Download Document'
         },
 
         // My Campaigns
@@ -243,7 +261,8 @@ export const translations = {
             delete: 'Delete',
             confirmDelete: 'Delete campaign?',
             deleted: 'Campaign deleted',
-            deleteError: 'Error deleting campaign'
+            deleteError: 'Error deleting campaign',
+            edit: 'Edit'
         },
 
         // Profile
@@ -281,7 +300,22 @@ export const translations = {
             donationSuccess: 'Thank you for your support!',
             donationError: 'Error creating donation',
             gallery: 'Photo Gallery',
-            cover: 'Cover'
+            cover: 'Cover',
+            documentLabel: '📄 Document',
+            documentDesc: 'Upload document (PDF, DOC, DOCX). Maximum 10MB.',
+            documentTooLarge: 'Document size must not exceed 10MB'
+        },
+
+        editCampaign: {
+            title: 'Edit Campaign',
+            subtitle: 'Update your campaign information',
+            coverImageDesc: 'Upload new image or keep current',
+            galleryDesc: 'Upload new images or keep current',
+            existingDocument: 'Current document',
+            loadError: 'Error loading campaign',
+            error: 'Error updating campaign',
+            saving: 'Saving...',
+            save: 'Save Changes'
         }
     },
 
@@ -373,7 +407,10 @@ export const translations = {
             error: 'Արշավի ստեղծման սխալ',
             coverRequired: 'Կազմի լուսանկարը պարտադիր է',
             fileTooLarge: 'Ֆայլի չափը չպետք է գերազանցի 5MB',
-            maxPhotos: 'Առավելագույնը 10 լուսանկար պատկերասրահում'
+            maxPhotos: 'Առավելագույնը 10 լուսանկար պատկերասրահում',
+            documentLabel: '📄 Փաստաթուղթ',
+            documentDesc: 'Վերբեռնեք փաստաթուղթ (PDF, DOC, DOCX)։ Առավելագույնը 10MB։',
+            documentTooLarge: 'Փաստաթղթի չափը չպետք է գերազանցի 10MB'
         },
 
         // My Campaigns
@@ -386,7 +423,8 @@ export const translations = {
             delete: 'Ջնջել',
             confirmDelete: 'Ջնջե՞ք արշավը',
             deleted: 'Արշավը ջնջված է',
-            deleteError: 'Ջնջման սխալ'
+            deleteError: 'Ջնջման սխալ',
+            edit: 'Խմբագրել'
         },
 
         // Profile
@@ -424,7 +462,20 @@ export const translations = {
             donationSuccess: 'Շնորհակալություն ձեր աջակցության համար',
             donationError: 'Նվիրատվության ստեղծման սխալ',
             gallery: 'Լուսանկարների պատկերասրահ',
-            cover: 'Կազմ'
+            cover: 'Կազմ',
+            downloadDocument: 'Ներբեռնել փաստաթուղթը'
+        },
+
+        editCampaign: {
+            title: 'Խմբագրել արշավը',
+            subtitle: 'Թարմացրեք ձեր արշավի տեղեկությունները',
+            coverImageDesc: 'Վերբեռնեք նոր նկար կամ պահեք ընթացիկը',
+            galleryDesc: 'Վերբեռնեք նոր նկարներ կամ պահեք ընթացիկները',
+            existingDocument: 'Ընթացիկ փաստաթուղթ',
+            loadError: 'Արշավը բեռնելու սխալ',
+            error: 'Արշավը թարմացնելու սխալ',
+            saving: 'Պահպանում...',
+            save: 'Պահպանել փոփոխությունները'
         }
     }
 };

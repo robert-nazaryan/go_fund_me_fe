@@ -18,7 +18,7 @@ function Navbar() {
       <nav className="navbar">
         <div className="navbar-container">
           <Link to="/" className="navbar-logo">
-            💰 CrowdFund
+            💰 HelpMe
           </Link>
 
           <div className="navbar-menu">
@@ -30,7 +30,7 @@ function Navbar() {
                   <Link to="/my-campaigns" className="navbar-link">{t.navbar.myCampaigns}</Link>
                   <Link to="/profile" className="navbar-link">{t.navbar.profile}</Link>
                   <div className="navbar-user">
-                    <span className="navbar-balance">💵 {user?.virtualBalance.toFixed(2)} ₽</span>
+                    <span className="navbar-balance">💵 {user?.virtualBalance.toFixed(2)} ֏</span>
                     <span className="navbar-username">{user?.fullName}</span>
                     <LanguageSwitcher />
                     <button onClick={handleLogout} className="btn btn-danger btn-sm">{t.navbar.logout}</button>

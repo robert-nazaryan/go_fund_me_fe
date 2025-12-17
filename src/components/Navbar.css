@@ -97,7 +97,6 @@
 }
 
 .navbar-balance::before {
-  content: '💰';
   font-size: 20px;
 }
 
@@ -129,32 +128,70 @@
 
 @media (max-width: 1024px) {
   .navbar-menu {
-    gap: 20px;
+    gap: 15px;
   }
-  
+
   .navbar-link {
     font-size: 14px;
+  }
+
+  .navbar-balance {
+    font-size: 16px;
+    padding: 10px 20px;
+  }
+
+  .navbar-username {
+    font-size: 14px;
+    padding: 8px 16px;
   }
 }
 
 @media (max-width: 768px) {
   .navbar-container {
     padding: 15px 20px;
+    flex-wrap: wrap;
+    gap: 15px;
   }
-  
+
   .navbar-logo {
     font-size: 24px;
   }
-  
+
   .navbar-menu {
-    gap: 15px;
-    font-size: 13px;
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
   }
-  
+
+  .navbar-link {
+    font-size: 13px;
+    padding: 6px 0;
+  }
+
   .navbar-user {
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 8px;
-    padding-left: 15px;
+    width: 100%;
+    justify-content: center;
+    padding-left: 0;
+    border-left: none;
+    border-top: 2px solid var(--border-color);
+    padding-top: 15px;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .navbar-balance {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+
+  .navbar-username {
+    font-size: 13px;
+    padding: 6px 14px;
+  }
+
+  .btn-sm {
+    padding: 6px 16px;
+    font-size: 13px;
   }
 }
