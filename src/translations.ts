@@ -323,8 +323,8 @@ export const translations = {
         // Navbar
         navbar: {
             home: 'Գլխավոր',
-            createCampaign: 'Ստեղծել արշավ',
-            myCampaigns: 'Իմ արշավները',
+            createCampaign: 'Ստեղծել կազմակերպություն',
+            myCampaigns: 'Իմ կազմակերպությունները',
             profile: 'Պրոֆիլ',
             login: 'Մուտք',
             register: 'Գրանցում',
@@ -349,8 +349,8 @@ export const translations = {
 
         // Home
         home: {
-            title: 'Ակտիվ արշավներ',
-            noCampaigns: 'Դեռ արշավներ չկան'
+            title: 'Ակտիվ կազմակերպությունեը',
+            noCampaigns: 'Դեռ կազմակերպություներ չկան'
         },
 
         // Campaign
@@ -385,7 +385,7 @@ export const translations = {
 
         // Create Campaign
         createCampaign: {
-            title: 'Ստեղծել արշավ',
+            title: 'Ստեղծել կազմակերպություն',
             subtitle: 'Պատմեք ձեր նպատակի մասին',
             nameLabel: 'Անվանում',
             namePlaceholder: 'Օգնություն բուժման համար',
@@ -395,16 +395,16 @@ export const translations = {
             goalPlaceholder: '50000',
             categoryLabel: 'Կատեգորիա',
             coverImageLabel: '📸 Կազմի նկար',
-            coverImageDesc: 'Արշավի հիմնական պատկեր։ Առավելագույնը 5MB։',
+            coverImageDesc: 'Կազմակերպության հիմնական պատկեր։ Առավելագույնը 5MB։',
             galleryLabel: '🖼️ Լուսանկարների պատկերասրահ',
             galleryDesc: 'Լրացուցիչ պատկերներ (մինչև 10 հատ)։ Այցելուները կարող են դրանք դիտել։',
             optional: 'ոչ պարտադիր',
             photos: 'լուսանկար',
             remove: 'Հեռացնել',
             cancel: 'Չեղարկել',
-            create: 'Ստեղծել արշավ',
+            create: 'Ստեղծել կազմակերպություն',
             creating: 'Ստեղծում...',
-            error: 'Արշավի ստեղծման սխալ',
+            error: 'Կազմակերպության ստեղծման սխալ',
             coverRequired: 'Կազմի լուսանկարը պարտադիր է',
             fileTooLarge: 'Ֆայլի չափը չպետք է գերազանցի 5MB',
             maxPhotos: 'Առավելագույնը 10 լուսանկար պատկերասրահում',
@@ -415,14 +415,14 @@ export const translations = {
 
         // My Campaigns
         myCampaigns: {
-            title: 'Իմ արշավները',
-            create: 'Ստեղծել արշավ',
-            empty: 'Դուք դեռ արշավներ չունեք',
-            createFirst: 'Ստեղծել առաջին արշավը',
+            title: 'Իմ կազմակերպությունները',
+            create: 'Ստեղծել կազմակերպություն',
+            empty: 'Դուք դեռ կազմակերպություն չունեք',
+            createFirst: 'Ստեղծել առաջին կազմակերպությունը',
             view: 'Դիտել',
             delete: 'Ջնջել',
-            confirmDelete: 'Ջնջե՞ք արշավը',
-            deleted: 'Արշավը ջնջված է',
+            confirmDelete: 'Ջնջել կազմակերպությունը՞',
+            deleted: 'Կազմակերպությունը ջնջված է',
             deleteError: 'Ջնջման սխալ',
             edit: 'Խմբագրել'
         },
@@ -458,7 +458,7 @@ export const translations = {
             donations: 'Նվիրատվություններ',
             noDonations: 'Դեռ նվիրատվություններ չկան',
             anonymousDonor: 'Անանուն',
-            notFound: 'Արշավը չի գտնվել',
+            notFound: 'Կազմակերպությունը չի գտնվել',
             donationSuccess: 'Շնորհակալություն ձեր աջակցության համար',
             donationError: 'Նվիրատվության ստեղծման սխալ',
             gallery: 'Լուսանկարների պատկերասրահ',
@@ -467,13 +467,13 @@ export const translations = {
         },
 
         editCampaign: {
-            title: 'Խմբագրել արշավը',
-            subtitle: 'Թարմացրեք ձեր արշավի տեղեկությունները',
+            title: 'Խմբագրել կազմակերպությունը',
+            subtitle: 'Թարմացրեք ձեր կազմակերպության տեղեկությունները',
             coverImageDesc: 'Վերբեռնեք նոր նկար կամ պահեք ընթացիկը',
             galleryDesc: 'Վերբեռնեք նոր նկարներ կամ պահեք ընթացիկները',
             existingDocument: 'Ընթացիկ փաստաթուղթ',
-            loadError: 'Արշավը բեռնելու սխալ',
-            error: 'Արշավը թարմացնելու սխալ',
+            loadError: 'Կազմակերպությունը բեռնելու սխալ',
+            error: 'Կազմակերպությունը թարմացնելու սխալ',
             saving: 'Պահպանում...',
             save: 'Պահպանել փոփոխությունները'
         }

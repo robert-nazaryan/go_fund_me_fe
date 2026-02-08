@@ -70,7 +70,6 @@ function LanguageSwitcher() {
         <span className="language-flag-svg">
           <CurrentFlag />
         </span>
-                <span className="language-code">{currentLanguage.code.toUpperCase()}</span>
                 <span className={`language-arrow ${isOpen ? 'open' : ''}`}>▼</span>
             </button>
 
