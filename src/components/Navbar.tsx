@@ -1,5 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { useEffect } from 'react';
 import './Navbar.css';
 import LanguageSwitcher from "../LanguageSwitcher.tsx";
 import {useLanguage} from "../context/LanguageContext.tsx";
@@ -8,6 +9,23 @@ function Navbar() {
   const { user, logout, isAuthenticated } = useAuth();
   const { t } = useLanguage();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!isAuthenticated) return;
+
+    // Слушаем событие обновления баланса
+    const handleBalanceUpdate = () => {
+      // Триггерим перерендер компонента через Context
+      // AuthContext автоматически обновится после API запроса
+      window.location.reload();
+    };
+
+    window.addEventListener('balanceUpdate', handleBalanceUpdate);
+
+    return () => {
+      window.removeEventListener('balanceUpdate', handleBalanceUpdate);
+    };
+  }, [isAuthenticated]);
 
   const handleLogout = () => {
     logout();

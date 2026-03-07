@@ -45,21 +45,28 @@ export const authAPI = {
 };
 
 export const campaignAPI = {
-  getAll: () => 
+  getAll: () =>
     api.get<Campaign[]>('/campaigns'),
-  getById: (id: number) => 
+  getById: (id: number) =>
     api.get<Campaign>(`/campaigns/${id}`),
-  getByStatus: (status: CampaignStatus) => 
+  getByStatus: (status: CampaignStatus) =>
     api.get<Campaign[]>(`/campaigns/status/${status}`),
-  getByCategory: (category: CampaignCategory) => 
+  getByCategory: (category: CampaignCategory) =>
     api.get<Campaign[]>(`/campaigns/category/${category}`),
-  getMyCampaigns: () => 
+  getMyCampaigns: () =>
     api.get<Campaign[]>('/campaigns/my'),
-  create: (campaignData: CampaignCreateRequest) => 
+  search: (query?: string, category?: CampaignCategory, status?: CampaignStatus) => {
+    const params = new URLSearchParams();
+    if (query) params.append('query', query);
+    if (category) params.append('category', category);
+    if (status) params.append('status', status);
+    return api.get<Campaign[]>(`/campaigns/search?${params.toString()}`);
+  },
+  create: (campaignData: CampaignCreateRequest) =>
     api.post<Campaign>('/campaigns', campaignData),
-  update: (id: number, campaignData: CampaignUpdateRequest) => 
+  update: (id: number, campaignData: CampaignUpdateRequest) =>
     api.put<Campaign>(`/campaigns/${id}`, campaignData),
-  delete: (id: number) => 
+  delete: (id: number) =>
     api.delete<void>(`/campaigns/${id}`)
 };
 

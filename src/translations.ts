@@ -1,6 +1,5 @@
 export const translations = {
     ru: {
-        // Navbar
         navbar: {
             home: 'Главная',
             createCampaign: 'Создать кампанию',
@@ -11,7 +10,6 @@ export const translations = {
             logout: 'Выйти'
         },
 
-        // Auth
         auth: {
             login: 'Вход',
             register: 'Регистрация',
@@ -27,13 +25,30 @@ export const translations = {
             loading: 'Загрузка...'
         },
 
-        // Home
         home: {
             title: 'Активные кампании',
-            noCampaigns: 'Кампаний пока нет'
+            noCampaigns: 'Кампаний пока нет',
+            search: 'Поиск кампаний...',
+            filterByCategory: 'Категория',
+            filterByStatus: 'Статус',
+            allCategories: 'Все категории',
+            allStatuses: 'Все статусы',
+            statuses: {
+                ACTIVE: 'Активные',
+                COMPLETED: 'Завершенные',
+                CANCELLED: 'Отмененные'
+            },
+            searchResults: 'Найдено кампаний',
+            noResults: 'Ничего не найдено. Попробуйте изменить параметры поиска.',
+            sortByNameAsc: 'По алфавиту А-Я',
+            sortByNameDesc: 'По алфавиту Я-А',
+            sortByNewest: 'Сначала новые',
+            sortByOldest: 'Сначала старые',
+            sortByGoalLow: 'Сначала дешевые',
+            sortByGoalHigh: 'Сначала дорогие',
+            sortByDefault: 'По умолчанию',
         },
 
-        // Campaign
         campaign: {
             categories: {
                 MEDICAL: '🏥 Медицина',
@@ -63,7 +78,6 @@ export const translations = {
             donationError: 'Ошибка при создании доната'
         },
 
-        // Create Campaign
         createCampaign: {
             title: 'Создать кампанию',
             subtitle: 'Расскажите о вашей цели',
@@ -93,7 +107,6 @@ export const translations = {
             documentTooLarge: 'Размер документа не должен превышать 10MB'
         },
 
-        // My Campaigns
         myCampaigns: {
             title: 'Мои кампании',
             create: 'Создать кампанию',
@@ -107,7 +120,6 @@ export const translations = {
             edit: 'Редактировать'
         },
 
-        // Profile
         profile: {
             balance: 'Баланс',
             totalDonated: 'Всего пожертвовано',
@@ -116,7 +128,6 @@ export const translations = {
             noDonations: 'Вы еще не делали донатов'
         },
 
-        // Common
         common: {
             loading: 'Загрузка...',
             error: 'Ошибка',
@@ -139,11 +150,20 @@ export const translations = {
             noDonations: 'Пока нет пожертвований',
             anonymousDonor: 'Аноним',
             notFound: 'Кампания не найдена',
-            donationSuccess: 'Спасибо за поддержку!',
-            donationError: 'Ошибка при создании пожертвования',
+            donationSuccess: 'Спасибо за вашу поддержку! Ваш донат успешно отправлен.',
+            donationError: 'К сожалению, произошла ошибка при обработке доната. Попробуйте позже.',
             gallery: 'Галерея фото',
             cover: 'Обложка',
-            downloadDocument: 'Скачать документ'
+            downloadDocument: 'Скачать документ',
+            quickAmount: 'Быстрый выбор суммы',
+            customAmount: 'Или введите свою сумму',
+            yourBalance: 'Ваш баланс',
+            insufficientFunds: 'К сожалению, на вашем балансе недостаточно средств для совершения доната. Пожалуйста, выберите меньшую сумму.',
+            invalidAmount: 'Пожалуйста, введите корректную сумму доната.',
+            processing: 'Обработка...',
+            successTitle: 'Успешно!',
+            errorTitle: 'Внимание',
+            modalClose: 'Понятно'
         },
 
         editCampaign: {
@@ -160,7 +180,6 @@ export const translations = {
     },
 
     en: {
-        // Navbar
         navbar: {
             home: 'Home',
             createCampaign: 'Create Campaign',
@@ -171,7 +190,6 @@ export const translations = {
             logout: 'Logout'
         },
 
-        // Auth
         auth: {
             login: 'Login',
             register: 'Sign Up',
@@ -187,13 +205,30 @@ export const translations = {
             loading: 'Loading...'
         },
 
-        // Home
         home: {
             title: 'Active Campaigns',
-            noCampaigns: 'No campaigns yet'
+            noCampaigns: 'No campaigns yet',
+            search: 'Search campaigns...',
+            filterByCategory: 'Category',
+            filterByStatus: 'Status',
+            allCategories: 'All categories',
+            allStatuses: 'All statuses',
+            statuses: {
+                ACTIVE: 'Active',
+                COMPLETED: 'Completed',
+                CANCELLED: 'Cancelled'
+            },
+            searchResults: 'Campaigns found',
+            noResults: 'No results found. Try changing search parameters.',
+            sortByNameAsc: 'A-Z',
+            sortByNameDesc: 'Z-A',
+            sortByNewest: 'Newest first',
+            sortByOldest: 'Oldest first',
+            sortByGoalLow: 'Lowest goal',
+            sortByGoalHigh: 'Highest goal',
+            sortByDefault: 'Default',
         },
 
-        // Campaign
         campaign: {
             categories: {
                 MEDICAL: '🏥 Medical',
@@ -223,7 +258,6 @@ export const translations = {
             donationError: 'Error creating donation'
         },
 
-        // Create Campaign
         createCampaign: {
             title: 'Create Campaign',
             subtitle: 'Tell us about your goal',
@@ -251,7 +285,6 @@ export const translations = {
             downloadDocument: 'Download Document'
         },
 
-        // My Campaigns
         myCampaigns: {
             title: 'My Campaigns',
             create: 'Create Campaign',
@@ -265,7 +298,6 @@ export const translations = {
             edit: 'Edit'
         },
 
-        // Profile
         profile: {
             balance: 'Balance',
             totalDonated: 'Total Donated',
@@ -274,7 +306,6 @@ export const translations = {
             noDonations: "You haven't made any donations yet"
         },
 
-        // Common
         common: {
             loading: 'Loading...',
             error: 'Error',
@@ -297,13 +328,22 @@ export const translations = {
             noDonations: 'No donations yet',
             anonymousDonor: 'Anonymous',
             notFound: 'Campaign not found',
-            donationSuccess: 'Thank you for your support!',
-            donationError: 'Error creating donation',
+            donationSuccess: 'Thank you for your support! Your donation was successful.',
+            donationError: 'Unfortunately, an error occurred while processing your donation. Please try again later.',
             gallery: 'Photo Gallery',
             cover: 'Cover',
             documentLabel: '📄 Document',
             documentDesc: 'Upload document (PDF, DOC, DOCX). Maximum 10MB.',
-            documentTooLarge: 'Document size must not exceed 10MB'
+            documentTooLarge: 'Document size must not exceed 10MB',
+            quickAmount: 'Quick amount selection',
+            customAmount: 'Or enter custom amount',
+            yourBalance: 'Your balance',
+            insufficientFunds: 'Unfortunately, you have insufficient funds in your balance. Please choose a smaller amount.',
+            invalidAmount: 'Please enter a valid donation amount.',
+            processing: 'Processing...',
+            successTitle: 'Success!',
+            errorTitle: 'Attention',
+            modalClose: 'Got it'
         },
 
         editCampaign: {
@@ -320,7 +360,6 @@ export const translations = {
     },
 
     hy: {
-        // Navbar
         navbar: {
             home: 'Գլխավոր',
             createCampaign: 'Ստեղծել կազմակերպություն',
@@ -331,7 +370,6 @@ export const translations = {
             logout: 'Ելք'
         },
 
-        // Auth
         auth: {
             login: 'Մուտք',
             register: 'Գրանցում',
@@ -347,13 +385,30 @@ export const translations = {
             loading: 'Բեռնում...'
         },
 
-        // Home
         home: {
             title: 'Ակտիվ կազմակերպությունեը',
-            noCampaigns: 'Դեռ կազմակերպություներ չկան'
+            noCampaigns: 'Դեռ կազմակերպություններ չկան',
+            search: 'Փնտրել կազմակերպություններ...',
+            filterByCategory: 'Կատեգորիա',
+            filterByStatus: 'Կարգավիճակ',
+            allCategories: 'Բոլոր կատեգորիաները',
+            allStatuses: 'Բոլոր կարգավիճակները',
+            statuses: {
+                ACTIVE: 'Ակտիվ',
+                COMPLETED: 'Ավարտված',
+                CANCELLED: 'Չեղարկված'
+            },
+            searchResults: 'Գտնված կազմակերպություններ',
+            noResults: 'Ոչինչ չի գտնվել։ Փորձեք փոխել որոնման պարամետրերը։',
+            sortByNameAsc: 'Այբբենական Ա-Ֆ',
+            sortByNameDesc: 'Այբբենական Ֆ-Ա',
+            sortByNewest: 'Սկզբում նորերը',
+            sortByOldest: 'Սկզբում հիները',
+            sortByGoalLow: 'Ամենացածր նպատակ',
+            sortByGoalHigh: 'Ամենաբարձր նպատակ',
+            sortByDefault: 'Default',
         },
 
-        // Campaign
         campaign: {
             categories: {
                 MEDICAL: '🏥 Բժշկություն',
@@ -383,7 +438,6 @@ export const translations = {
             donationError: 'Նվիրատվության ստեղծման սխալ'
         },
 
-        // Create Campaign
         createCampaign: {
             title: 'Ստեղծել կազմակերպություն',
             subtitle: 'Պատմեք ձեր նպատակի մասին',
@@ -413,7 +467,6 @@ export const translations = {
             documentTooLarge: 'Փաստաթղթի չափը չպետք է գերազանցի 10MB'
         },
 
-        // My Campaigns
         myCampaigns: {
             title: 'Իմ կազմակերպությունները',
             create: 'Ստեղծել կազմակերպություն',
@@ -427,7 +480,6 @@ export const translations = {
             edit: 'Խմբագրել'
         },
 
-        // Profile
         profile: {
             balance: 'Մնացորդ',
             totalDonated: 'Ընդամենը նվիրաբերված',
@@ -436,7 +488,6 @@ export const translations = {
             noDonations: 'Դուք դեռ նվիրատվություններ չեք կատարել'
         },
 
-        // Common
         common: {
             loading: 'Բեռնում...',
             error: 'Սխալ',
@@ -459,11 +510,20 @@ export const translations = {
             noDonations: 'Դեռ նվիրատվություններ չկան',
             anonymousDonor: 'Անանուն',
             notFound: 'Կազմակերպությունը չի գտնվել',
-            donationSuccess: 'Շնորհակալություն ձեր աջակցության համար',
-            donationError: 'Նվիրատվության ստեղծման սխալ',
+            donationSuccess: 'Շնորհակալություն ձեր աջակցության համար! Ձեր նվիրատվությունը հաջողությամբ ուղարկվել է։',
+            donationError: 'Ցավոք սրտի, նվիրատվության ընթացքում առաջացավ սխալ։ Խնդրում ենք փորձել ավելի ուշ։',
             gallery: 'Լուսանկարների պատկերասրահ',
             cover: 'Կազմ',
-            downloadDocument: 'Ներբեռնել փաստաթուղթը'
+            downloadDocument: 'Ներբեռնել փաստաթուղթը',
+            quickAmount: 'Արագ ընտրություն',
+            customAmount: 'Կամ մուտքագրեք գումարը',
+            yourBalance: 'Ձեր մնացորդը',
+            insufficientFunds: 'Ցավոք սրտի, ձեր հաշվի վրա բավարար միջոցներ չկան։ Խնդրում ենք ընտրել ավելի փոքր գումար։',
+            invalidAmount: 'Խնդրում ենք մուտքագրել ճիշտ գումար։',
+            processing: 'Մշակում...',
+            successTitle: 'Հաջողություն!',
+            errorTitle: 'Ուշադրություն',
+            modalClose: 'Հասկանալի է'
         },
 
         editCampaign: {

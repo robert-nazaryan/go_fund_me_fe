@@ -3,11 +3,13 @@ import { useParams } from 'react-router-dom';
 import { campaignAPI, donationAPI } from '../services/api';
 import { Campaign, Donation } from '../types';
 import { useLanguage } from '../context/LanguageContext';
+import { useAuth } from '../context/AuthContext';
 import './CampaignDetailsPage.css';
 
 function CampaignDetailsPage() {
   const { t } = useLanguage();
   const { id } = useParams<{ id: string }>();
+  const { user } = useAuth();
   const [campaign, setCampaign] = useState<Campaign | null>(null);
   const [donations, setDonations] = useState<Donation[]>([]);
   const [amount, setAmount] = useState('');
@@ -15,6 +17,11 @@ function CampaignDetailsPage() {
   const [isAnonymous, setIsAnonymous] = useState(false);
   const [loading, setLoading] = useState(true);
   const [selectedImage, setSelectedImage] = useState<string>('');
+  const [showErrorModal, setShowErrorModal] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+  const [isProcessing, setIsProcessing] = useState(false);
+
+  const quickAmounts = [500, 1000, 2500, 5000, 10000];
 
   useEffect(() => {
     loadCampaignDetails();
@@ -38,24 +45,73 @@ function CampaignDetailsPage() {
     }
   };
 
+  const handleQuickAmount = (value: number) => {
+    setAmount(value.toString());
+  };
+
+  const showError = (message: string) => {
+    setErrorMessage(message);
+    setShowErrorModal(true);
+  };
+
   const handleDonate = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    const donationAmount = parseFloat(amount);
+
+    // Валидация суммы
+    if (isNaN(donationAmount) || donationAmount <= 0) {
+      showError(t.campaignDetails.invalidAmount);
+      return;
+    }
+
+    // Проверка баланса
+    if (user && donationAmount > user.virtualBalance) {
+      showError(t.campaignDetails.insufficientFunds);
+      return;
+    }
+
+    setIsProcessing(true);
+
     try {
+      // ===== МЕСТО ДЛЯ ИНТЕГРАЦИИ РЕАЛЬНОЙ ПЛАТЕЖНОЙ СИСТЕМЫ =====
+      // Здесь будет:
+      // 1. Вызов payment gateway (Stripe, PayPal, etc.)
+      // 2. Обработка 3D Secure если нужно
+      // 3. Получение payment confirmation
+      // const paymentResult = await processPayment(donationAmount);
+      // if (!paymentResult.success) {
+      //   showError(paymentResult.error);
+      //   return;
+      // }
+      // ===========================================================
+
       await donationAPI.create({
         campaignId: Number(id),
-        amount: parseFloat(amount),
+        amount: donationAmount,
         message: message || undefined,
         isAnonymous
       });
 
-      alert(t.campaignDetails.donationSuccess);
+      // Триггерим событие для обновления баланса в Navbar
+      window.dispatchEvent(new CustomEvent('balanceUpdate'));
+
+      // Показываем успех
+      showError(t.campaignDetails.donationSuccess);
+
+      // Очищаем форму
       setAmount('');
       setMessage('');
       setIsAnonymous(false);
+
+      // Перезагружаем данные
       loadCampaignDetails();
-    } catch (error) {
-      alert(t.campaignDetails.donationError);
+    } catch (error: any) {
+      // Обработка различных типов ошибок от backend
+      const errorMsg = error.response?.data?.message || t.campaignDetails.donationError;
+      showError(errorMsg);
+    } finally {
+      setIsProcessing(false);
     }
   };
 
@@ -77,8 +133,33 @@ function CampaignDetailsPage() {
     'OTHER': t.campaign.categories.OTHER
   };
 
+  const userBalance = user?.virtualBalance || 0;
+
   return (
       <div className="campaign-details-page">
+        {/* Модальное окно для ошибок и уведомлений */}
+        {showErrorModal && (
+            <div className="modal-overlay" onClick={() => setShowErrorModal(false)}>
+              <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+                <div className="modal-icon">
+                  {errorMessage === t.campaignDetails.donationSuccess ? '✅' : '⚠️'}
+                </div>
+                <h3 className="modal-title">
+                  {errorMessage === t.campaignDetails.donationSuccess
+                      ? t.campaignDetails.successTitle
+                      : t.campaignDetails.errorTitle}
+                </h3>
+                <p className="modal-message">{errorMessage}</p>
+                <button
+                    className="modal-button"
+                    onClick={() => setShowErrorModal(false)}
+                >
+                  {t.campaignDetails.modalClose}
+                </button>
+              </div>
+            </div>
+        )}
+
         <div className="details-container">
           <div className="details-left">
             <div className="image-section">
@@ -179,19 +260,37 @@ function CampaignDetailsPage() {
               <h2>{t.campaignDetails.support}</h2>
               <form onSubmit={handleDonate} className="donate-form">
                 <div className="form-group">
-                  <label>{t.campaignDetails.amount}</label>
-                  <input
-                      type="number"
-                      value={amount}
-                      onChange={(e) => setAmount(e.target.value)}
-                      required
-                      min="1"
-                      placeholder="1000"
-                      className="form-input"
-                  />
-                  <p className="balance-info">
-                    {t.campaignDetails.balance}: {localStorage.getItem('balance') || '0'} ֏
-                  </p>
+                  <label>{t.campaignDetails.quickAmount}</label>
+                  <div className="quick-amounts">
+                    {quickAmounts.map((quickAmount) => (
+                        <button
+                            key={quickAmount}
+                            type="button"
+                            className={`quick-amount-btn ${amount === quickAmount.toString() ? 'active' : ''}`}
+                            onClick={() => handleQuickAmount(quickAmount)}
+                            disabled={isProcessing}
+                        >
+                          {quickAmount.toLocaleString()} ֏
+                        </button>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="form-group">
+                  <label>{t.campaignDetails.customAmount}</label>
+                  <div className="amount-input-wrapper">
+                    <input
+                        type="number"
+                        value={amount}
+                        onChange={(e) => setAmount(e.target.value)}
+                        required
+                        min="1"
+                        placeholder="5000"
+                        className="form-input"
+                        disabled={isProcessing}
+                    />
+                    <span className="currency-symbol">֏</span>
+                  </div>
                 </div>
 
                 <div className="form-group">
@@ -202,6 +301,7 @@ function CampaignDetailsPage() {
                       rows={4}
                       placeholder={t.campaignDetails.messagePlaceholder}
                       className="form-textarea"
+                      disabled={isProcessing}
                   />
                 </div>
 
@@ -211,12 +311,24 @@ function CampaignDetailsPage() {
                       id="anonymous"
                       checked={isAnonymous}
                       onChange={(e) => setIsAnonymous(e.target.checked)}
+                      disabled={isProcessing}
                   />
                   <label htmlFor="anonymous">{t.campaignDetails.anonymous}</label>
                 </div>
 
-                <button type="submit" className="btn btn-donate">
-                  {t.campaignDetails.donate}
+                <button
+                    type="submit"
+                    className="btn btn-donate"
+                    disabled={isProcessing}
+                >
+                  {isProcessing ? (
+                      <>
+                        <span className="spinner"></span>
+                        {t.campaignDetails.processing}
+                      </>
+                  ) : (
+                      <>{t.campaignDetails.donate}</>
+                  )}
                 </button>
               </form>
             </div>
