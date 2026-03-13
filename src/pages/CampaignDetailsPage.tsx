@@ -36,7 +36,7 @@ function CampaignDetailsPage() {
       setCampaign(campaignRes.data);
       setDonations(donationsRes.data);
       if (campaignRes.data.coverImage) {
-        setSelectedImage(`https://helpme-prod.up.railway.app${campaignRes.data.coverImage}`);
+        setSelectedImage(campaignRes.data.coverImage);
       }
     } catch (error) {
       console.error('Error loading campaign:', error);
@@ -174,11 +174,11 @@ function CampaignDetailsPage() {
                     <h3 className="gallery-title">📸 {t.campaignDetails.gallery}</h3>
                     <div className="gallery-grid">
                       <div
-                          className={`gallery-item ${selectedImage === `https://helpme-prod.up.railway.app${campaign.coverImage}` ? 'active' : ''}`}
-                          onClick={() => setSelectedImage(`https://helpme-prod.up.railway.app${campaign.coverImage}`)}
+                          className={`gallery-item ${selectedImage === campaign.coverImage ? 'active' : ''}`}
+                          onClick={() => setSelectedImage(campaign.coverImage || '')}
                       >
                         <img
-                            src={`https://helpme-prod.up.railway.app${campaign.coverImage}`}
+                            src={campaign.coverImage}
                             alt="Cover"
                         />
                         <div className="gallery-item-overlay">
@@ -189,11 +189,11 @@ function CampaignDetailsPage() {
                       {campaign.galleryImages.map((imgPath, index) => (
                           <div
                               key={index}
-                              className={`gallery-item ${selectedImage === `https://helpme-prod.up.railway.app${imgPath}` ? 'active' : ''}`}
-                              onClick={() => setSelectedImage(`https://helpme-prod.up.railway.app${imgPath}`)}
+                              className={`gallery-item ${selectedImage === imgPath ? 'active' : ''}`}
+                              onClick={() => setSelectedImage(imgPath)}
                           >
                             <img
-                                src={`https://helpme-prod.up.railway.app${imgPath}`}
+                                src={imgPath}
                                 alt={`Gallery ${index + 1}`}
                             />
                             <div className="gallery-item-overlay">

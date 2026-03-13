@@ -2,7 +2,7 @@ import { useState, FormEvent, ChangeEvent, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { CampaignCategory } from '../types';
 import { useLanguage } from '../context/LanguageContext';
-import { campaignAPI } from '../services/api';
+import {API_URL, campaignAPI} from '../services/api';
 import './CreateCampaignPage.css';
 
 function EditCampaignPage() {
@@ -53,7 +53,7 @@ function EditCampaignPage() {
             });
 
             if (campaign.coverImage) {
-                setCoverPreview(`https://helpme-prod.up.railway.app${campaign.coverImage}`);
+                setCoverPreview(campaign.coverImage);
             }
 
             if (campaign.documentUrl) {
@@ -165,7 +165,7 @@ function EditCampaignPage() {
             }
 
             const token = localStorage.getItem('token');
-            const response = await fetch(`https://helpme-prod.up.railway.app/api/campaigns/${id}`, {
+            const response = await fetch(API_URL +`/campaigns/${id}`, {
                 method: 'PUT',
                 headers: {
                     'Authorization': `Bearer ${token}`

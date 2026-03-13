@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { CampaignCategory } from '../types';
 import { useLanguage } from '../context/LanguageContext';
 import './CreateCampaignPage.css';
+import {API_URL} from "../services/api.ts";
 
 function CreateCampaignPage() {
   const { t } = useLanguage();
@@ -134,7 +135,7 @@ function CreateCampaignPage() {
       }
 
       const token = localStorage.getItem('token');
-      const response = await fetch('https://helpme-prod.up.railway.app/api/campaigns', {
+      const response = await fetch(API_URL + '/campaigns', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`

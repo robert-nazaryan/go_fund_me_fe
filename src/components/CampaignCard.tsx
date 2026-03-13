@@ -29,7 +29,7 @@ function CampaignCard({ campaign }: CampaignCardProps) {
       <div className="campaign-card" onClick={handleClick}>
         <div className="campaign-image-wrapper">
           <img
-              src={campaign.coverImage ? `https://helpme-prod.up.railway.app${campaign.coverImage}` : 'https://via.placeholder.com/400x300?text=No+Image'}
+              src={campaign.coverImage ? campaign.coverImage : 'https://via.placeholder.com/400x300?text=No+Image'}
               alt={campaign.title}
               className="campaign-image"
           />
