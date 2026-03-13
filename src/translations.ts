@@ -282,7 +282,9 @@ export const translations = {
             coverRequired: 'Cover photo is required',
             fileTooLarge: 'File size must not exceed 5MB',
             maxPhotos: 'Maximum 10 photos in gallery',
-            downloadDocument: 'Download Document'
+            documentLabel: '📄 Document',
+            documentDesc: 'Upload document. Maximum 10MB.',
+            documentTooLarge: 'Document size must not exceed 10MB'
         },
 
         myCampaigns: {
@@ -332,6 +334,7 @@ export const translations = {
             donationError: 'Unfortunately, an error occurred while processing your donation. Please try again later.',
             gallery: 'Photo Gallery',
             cover: 'Cover',
+            downloadDocument: 'Download Document',
             documentLabel: '📄 Document',
             documentDesc: 'Upload document (PDF, DOC, DOCX). Maximum 10MB.',
             documentTooLarge: 'Document size must not exceed 10MB',
