@@ -5,6 +5,7 @@ import { Campaign, Donation } from '../types';
 import { useLanguage } from '../context/LanguageContext';
 import { useAuth } from '../context/AuthContext';
 import './CampaignDetailsPage.css';
+import {imageUrl} from "../utils/url.ts";
 
 function CampaignDetailsPage() {
   const { t } = useLanguage();
@@ -117,7 +118,7 @@ function CampaignDetailsPage() {
 
   const handleDownloadDocument = () => {
     if (campaign?.documentUrl) {
-      window.open(`https://helpme-prod.up.railway.app${campaign.documentUrl}`, '_blank');
+      window.open(campaign.documentUrl, '_blank');
     }
   };
 
@@ -163,7 +164,7 @@ function CampaignDetailsPage() {
             <div className="image-section">
               {selectedImage && (
                   <img
-                      src={selectedImage}
+                      src={imageUrl(selectedImage)}
                       alt={campaign.title}
                       className="detail-image"
                   />
@@ -178,7 +179,7 @@ function CampaignDetailsPage() {
                           onClick={() => setSelectedImage(campaign.coverImage || '')}
                       >
                         <img
-                            src={campaign.coverImage}
+                            src={imageUrl(campaign.coverImage)}
                             alt="Cover"
                         />
                         <div className="gallery-item-overlay">
@@ -193,7 +194,7 @@ function CampaignDetailsPage() {
                               onClick={() => setSelectedImage(imgPath)}
                           >
                             <img
-                                src={imgPath}
+                                src={imageUrl(imgPath)}
                                 alt={`Gallery ${index + 1}`}
                             />
                             <div className="gallery-item-overlay">

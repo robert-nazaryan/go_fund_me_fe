@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { Campaign, CampaignCategory } from '../types';
 import './CampaignCard.css';
 import { useLanguage } from "../context/LanguageContext.tsx";
+import {imageUrl} from "../utils/url.ts";
 
 interface CampaignCardProps {
   campaign: Campaign;
@@ -29,7 +30,7 @@ function CampaignCard({ campaign }: CampaignCardProps) {
       <div className="campaign-card" onClick={handleClick}>
         <div className="campaign-image-wrapper">
           <img
-              src={campaign.coverImage ? campaign.coverImage : 'https://via.placeholder.com/400x300?text=No+Image'}
+              src={campaign.coverImage ? imageUrl(campaign.coverImage) : 'https://via.placeholder.com/400x300?text=No+Image'}
               alt={campaign.title}
               className="campaign-image"
           />
