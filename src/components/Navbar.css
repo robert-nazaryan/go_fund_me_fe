@@ -3,11 +3,10 @@
   top: 0;
   left: 0;
   right: 0;
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(20px) saturate(180%);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  background: white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   z-index: 1000;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  border-bottom: 1px solid var(--border-color);
 }
 
 .navbar-container {
@@ -20,24 +19,28 @@
 }
 
 .navbar-logo {
-  font-size: 32px;
-  font-weight: 900;
-  background: linear-gradient(135deg, #667eea, #764ba2);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text-color);
   text-decoration: none;
   display: flex;
   align-items: center;
   gap: 10px;
   transition: all 0.3s;
-  filter: drop-shadow(0 2px 4px rgba(102, 126, 234, 0.3));
   white-space: nowrap;
   margin-right: 50px;
 }
 
+.logo-icon {
+  transition: all 0.3s;
+}
+
 .navbar-logo:hover {
-  transform: scale(1.08) rotate(-2deg);
+  color: var(--primary-color);
+}
+
+.navbar-logo:hover .logo-icon {
+  transform: scale(1.05);
 }
 
 .navbar-menu {
@@ -110,16 +113,21 @@
 
 .navbar-username {
   color: var(--text-color);
-  font-weight: 700;
-  font-size: 16px;
-  padding: 10px 20px;
-  background: rgba(102, 126, 234, 0.1);
-  border-radius: 20px;
+  font-weight: 600;
+  font-size: 15px;
+  padding: 8px 16px;
+  background: var(--bg-secondary);
+  border-radius: 8px;
   transition: all 0.3s;
+  text-decoration: none;
+  cursor: pointer;
+  border: 1px solid var(--border-color);
 }
 
 .navbar-username:hover {
-  background: rgba(102, 126, 234, 0.2);
+  background: var(--primary-light);
+  color: var(--primary-color);
+  border-color: var(--primary-color);
 }
 
 .btn-sm {

@@ -2,12 +2,37 @@ export const translations = {
     ru: {
         navbar: {
             home: 'Главная',
+            campaigns: 'Кампании',
             createCampaign: 'Создать кампанию',
             myCampaigns: 'Мои кампании',
             profile: 'Профиль',
             login: 'Войти',
             register: 'Регистрация',
             logout: 'Выйти'
+        },
+
+        landing: {
+            heroTitle: 'Помогаем мечтам сбываться',
+            heroSubtitle: 'Платформа для сбора средств на важные цели. Создайте кампанию или поддержите чужую мечту.',
+            exploreCampaigns: 'Смотреть кампании',
+            startCampaign: 'Создать кампанию',
+            whyUs: 'Почему выбирают нас',
+            feature1Title: 'Быстрый старт',
+            feature1Desc: 'Создайте кампанию за несколько минут и начните собирать средства прямо сейчас',
+            feature2Title: 'Безопасно',
+            feature2Desc: 'Все транзакции защищены, ваши данные в безопасности',
+            feature3Title: 'Прозрачно',
+            feature3Desc: 'Полная прозрачность: видно кто, сколько и когда поддержал',
+            feature4Title: 'Глобально',
+            feature4Desc: 'Доступно из любой точки мира, поддержка разных языков',
+            categories: 'Категории кампаний',
+            statCampaigns: 'Активных кампаний',
+            statRaised: 'Собрано средств',
+            statDonors: 'Благотворителей',
+            statCountries: 'Стран',
+            ctaTitle: 'Готовы начать?',
+            ctaSubtitle: 'Создайте свою кампанию сегодня и получите поддержку тысяч людей',
+            ctaButton: 'Создать кампанию'
         },
 
         auth: {
@@ -182,12 +207,37 @@ export const translations = {
     en: {
         navbar: {
             home: 'Home',
+            campaigns: 'Campaigns',
             createCampaign: 'Create Campaign',
             myCampaigns: 'My Campaigns',
             profile: 'Profile',
             login: 'Login',
             register: 'Sign Up',
             logout: 'Logout'
+        },
+
+        landing: {
+            heroTitle: 'Make Dreams Come True',
+            heroSubtitle: 'Fundraising platform for important goals. Create a campaign or support someone\'s dream.',
+            exploreCampaigns: 'Explore Campaigns',
+            startCampaign: 'Start Campaign',
+            whyUs: 'Why Choose Us',
+            feature1Title: 'Quick Start',
+            feature1Desc: 'Create a campaign in minutes and start raising funds right away',
+            feature2Title: 'Secure',
+            feature2Desc: 'All transactions are protected, your data is safe',
+            feature3Title: 'Transparent',
+            feature3Desc: 'Full transparency: see who, how much and when supported',
+            feature4Title: 'Global',
+            feature4Desc: 'Available from anywhere in the world, multi-language support',
+            categories: 'Campaign Categories',
+            statCampaigns: 'Active Campaigns',
+            statRaised: 'Funds Raised',
+            statDonors: 'Donors',
+            statCountries: 'Countries',
+            ctaTitle: 'Ready to Start?',
+            ctaSubtitle: 'Create your campaign today and get support from thousands of people',
+            ctaButton: 'Create Campaign'
         },
 
         auth: {
@@ -365,12 +415,37 @@ export const translations = {
     hy: {
         navbar: {
             home: 'Գլխավոր',
+            campaigns: 'Կազմակերպություններ',
             createCampaign: 'Ստեղծել կազմակերպություն',
             myCampaigns: 'Իմ կազմակերպությունները',
             profile: 'Պրոֆիլ',
             login: 'Մուտք',
             register: 'Գրանցում',
             logout: 'Ելք'
+        },
+
+        landing: {
+            heroTitle: 'Օգնում ենք երազանքներին իրականանալ',
+            heroSubtitle: 'Հարթակ կարևոր նպատակների համար միջոցներ հավաքելու։ Ստեղծեք կազմակերպություն կամ աջակցեք ուրիշի երազանքին։',
+            exploreCampaigns: 'Դիտել կազմակերպություններ',
+            startCampaign: 'Ստեղծել կազմակերպություն',
+            whyUs: 'Ինչու՞ մեզ',
+            feature1Title: 'Արագ սկիզբ',
+            feature1Desc: 'Ստեղծեք կազմակերպություն մի քանի րոպեում և սկսեք հավաքել միջոցներ հենց հիմա',
+            feature2Title: 'Անվտանգ',
+            feature2Desc: 'Բոլոր գործարքները պաշտպանված են, ձեր տվյալները անվտանգության մեջ են',
+            feature3Title: 'Թափանցիկ',
+            feature3Desc: 'Լրիվ թափանցիկություն՝ տեսանելի է ով, որքան և երբ է աջակցել',
+            feature4Title: 'Գլոբալ',
+            feature4Desc: 'Հասանելի աշխարհի ցանկացած կետից, տարբեր լեզուների աջակցություն',
+            categories: 'Կազմակերպությունների կատեգորիաներ',
+            statCampaigns: 'Ակտիվ կազմակերպություններ',
+            statRaised: 'Հավաքված միջոցներ',
+            statDonors: 'Բարեգործներ',
+            statCountries: 'Երկրներ',
+            ctaTitle: 'Պատրա՞ստ եք սկսել',
+            ctaSubtitle: 'Ստեղծեք ձեր կազմակերպությունը այսօր և ստացեք հազարավոր մարդկանց աջակցություն',
+            ctaButton: 'Ստեղծել կազմակերպություն'
         },
 
         auth: {

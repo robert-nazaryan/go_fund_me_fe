@@ -10,7 +10,7 @@
   flex-direction: column;
   position: relative;
   background: linear-gradient(white, white) padding-box,
-  linear-gradient(135deg, #667eea22 0%, #764ba222 100%) border-box;
+  linear-gradient(135deg, #FF6B6B22 0%, #FFA07A22 100%) border-box;
   cursor: pointer;
 }
 
@@ -23,7 +23,7 @@
   bottom: 0;
   border-radius: 20px;
   padding: 2px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #FF6B6B 0%, #FFA07A 100%);
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
@@ -37,8 +37,8 @@
 
 .campaign-card:hover {
   transform: translateY(-8px) scale(1.01);
-  box-shadow: 0 25px 50px -12px rgba(102, 126, 234, 0.35),
-  0 15px 30px -15px rgba(118, 75, 162, 0.25);
+  box-shadow: 0 25px 50px -12px rgba(255, 107, 107, 0.35),
+  0 15px 30px -15px rgba(255, 160, 122, 0.25);
 }
 
 .campaign-image-wrapper {
@@ -46,7 +46,7 @@
   height: 240px;
   overflow: hidden;
   position: relative;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #FF6B6B 0%, #FFA07A 100%);
 }
 
 .campaign-image {
@@ -86,14 +86,14 @@
 .campaign-category {
   display: inline-block;
   padding: 8px 18px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #FF6B6B 0%, #FFA07A 100%);
   color: white;
   border-radius: 25px;
   font-size: 13px;
   font-weight: 700;
   margin-bottom: 16px;
   align-self: flex-start;
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+  box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
   text-transform: uppercase;
   letter-spacing: 0.5px;
   position: relative;
@@ -156,14 +156,14 @@
 
 .progress-fill {
   height: 100%;
-  background: linear-gradient(90deg, #667eea 0%, #8b5cf6 50%, #764ba2 100%);
+  background: linear-gradient(90deg, #FF6B6B 0%, #FF8C69 50%, #FFA07A 100%);
   background-size: 200% 100%;
   animation: gradientMove 3s ease infinite;
   transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
   border-radius: 12px;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.5);
+  box-shadow: 0 2px 8px rgba(255, 107, 107, 0.5);
 }
 
 @keyframes gradientMove {
@@ -220,8 +220,8 @@
   margin-top: auto;
   border-top: 2px solid transparent;
   background: linear-gradient(white, white) padding-box,
-  linear-gradient(90deg, #667eea 0%, #764ba2 100%) border-box;
-  border-image: linear-gradient(90deg, #667eea 0%, #764ba2 100%) 1;
+  linear-gradient(90deg, #FF6B6B 0%, #FFA07A 100%) border-box;
+  border-image: linear-gradient(90deg, #FF6B6B 0%, #FFA07A 100%) 1;
 }
 
 .campaign-author {
@@ -235,7 +235,7 @@
 }
 
 .campaign-card:hover .campaign-author {
-  color: #667eea;
+  color: #FF6B6B;
 }
 
 .campaign-author::before {
@@ -251,7 +251,7 @@
 
 .campaign-view-btn {
   padding: 10px 24px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #FF6B6B 0%, #FFA07A 100%);
   color: white;
   border: none;
   border-radius: 25px;
@@ -259,12 +259,12 @@
   font-weight: 700;
   cursor: pointer;
   transition: all 0.3s;
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
 .campaign-view-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+  box-shadow: 0 6px 20px rgba(255, 107, 107, 0.5);
 }

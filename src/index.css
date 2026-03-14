@@ -5,16 +5,19 @@
 }
 
 :root {
-  --primary-color: #3b82f6;
-  --primary-hover: #2563eb;
-  --primary-light: #dbeafe;
+  --primary-color: #4F46E5;
+  --primary-hover: #4338CA;
+  --primary-light: #EEF2FF;
+  --secondary-color: #06B6D4;
+  --secondary-hover: #0891B2;
   --success-color: #10b981;
   --success-hover: #059669;
   --danger-color: #ef4444;
   --danger-hover: #dc2626;
   --text-color: #1f2937;
   --text-light: #6b7280;
-  --bg-color: #f9fafb;
+  --bg-color: #ffffff;
+  --bg-secondary: #f9fafb;
   --border-color: #e5e7eb;
   --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
   --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
@@ -27,25 +30,9 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: var(--text-color);
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  background-attachment: fixed;
+  background: var(--bg-secondary);
   min-height: 100vh;
   position: relative;
-}
-
-body::before {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background:
-          radial-gradient(circle at 20% 50%, rgba(102, 126, 234, 0.3) 0%, transparent 50%),
-          radial-gradient(circle at 80% 80%, rgba(118, 75, 162, 0.3) 0%, transparent 50%),
-          radial-gradient(circle at 40% 20%, rgba(139, 92, 246, 0.2) 0%, transparent 50%);
-  pointer-events: none;
-  z-index: 0;
 }
 
 .main-content {
@@ -103,31 +90,34 @@ code {
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, var(--primary-color), #8b5cf6);
+  background: var(--primary-color);
   color: white;
 }
 
 .btn-primary:hover {
+  background: var(--primary-hover);
   transform: translateY(-2px);
-  box-shadow: 0 10px 20px -5px rgba(59, 130, 246, 0.5);
+  box-shadow: 0 10px 20px -5px rgba(79, 70, 229, 0.5);
 }
 
 .btn-success {
-  background: linear-gradient(135deg, var(--success-color), #34d399);
+  background: var(--success-color);
   color: white;
 }
 
 .btn-success:hover {
+  background: var(--success-hover);
   transform: translateY(-2px);
   box-shadow: 0 10px 20px -5px rgba(16, 185, 129, 0.5);
 }
 
 .btn-danger {
-  background: linear-gradient(135deg, var(--danger-color), #f87171);
+  background: var(--danger-color);
   color: white;
 }
 
 .btn-danger:hover {
+  background: var(--danger-hover);
   transform: translateY(-2px);
   box-shadow: 0 10px 20px -5px rgba(239, 68, 68, 0.5);
 }
@@ -250,7 +240,7 @@ code {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(135deg, var(--primary-color), #8b5cf6);
+  background: var(--primary-color);
   border-radius: 10px;
 }
 
