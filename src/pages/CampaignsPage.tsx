@@ -15,8 +15,12 @@ function CampaignsPage() {
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState<CampaignCategory | ''>('');
-  const [sortBy, setSortBy] = useState<SortOption>('default');
+  const [selectedCategory, setSelectedCategory] = useState<CampaignCategory | ''>(() => {
+    const category = searchParams.get('category');
+    return (category && Object.values(CampaignCategory).includes(category as CampaignCategory))
+        ? category as CampaignCategory
+        : '';
+  });  const [sortBy, setSortBy] = useState<SortOption>('default');
 
   useEffect(() => {
     const category = searchParams.get('category');
@@ -29,17 +33,11 @@ function CampaignsPage() {
     loadCampaigns();
   }, [searchTerm, selectedCategory]);
 
-  useEffect(() => {
-    if (campaigns.length > 0) {
-      loadCampaigns();
-    }
-  }, [sortBy]);
-
   const loadCampaigns = async () => {
     try {
       setLoading(true);
       const response = await campaignAPI.search(
-          searchQuery || undefined,
+          searchTerm || undefined,
           selectedCategory || undefined,
           undefined
       );

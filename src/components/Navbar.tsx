@@ -53,7 +53,7 @@ function Navbar() {
                   <Link to="/create-campaign" className="navbar-link">{t.navbar.createCampaign}</Link>
                   <Link to="/my-campaigns" className="navbar-link">{t.navbar.myCampaigns}</Link>
                   <div className="navbar-user">
-                    <span className="navbar-balance">💵 {user?.virtualBalance.toFixed(2)} ֏</span>
+                    <span className="navbar-balance">{user?.virtualBalance.toFixed(2)} ֏</span>
                     <Link to="/profile" className="navbar-username">{user?.fullName}</Link>
                     <LanguageSwitcher />
                     <button onClick={handleLogout} className="btn btn-danger btn-sm">{t.navbar.logout}</button>
