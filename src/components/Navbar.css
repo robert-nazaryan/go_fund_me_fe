@@ -36,7 +36,7 @@
 }
 
 .navbar-logo:hover {
-  color: var(--primary-color);
+  color: var(--success-hover);
 }
 
 .navbar-logo:hover .logo-icon {
