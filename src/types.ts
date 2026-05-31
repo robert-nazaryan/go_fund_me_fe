@@ -4,8 +4,24 @@ export interface User {
   email: string;
   fullName: string;
   avatarUrl?: string;
-  virtualBalance: number;
   createdAt: string;
+}
+
+// Payment card types
+export interface Card {
+  id: number;
+  last4: string;
+  cardHolder: string;
+  expiryDate: string;
+  cardType: string;
+  createdAt: string;
+}
+
+export interface CardAddRequest {
+  cardNumber: string;
+  cardHolder: string;
+  expiryDate: string;
+  cvv: string;
 }
 
 // Campaign types
@@ -73,12 +89,15 @@ export interface Donation {
   amount: number;
   message?: string;
   isAnonymous: boolean;
+  transactionId?: string;
+  paymentStatus?: string;
   createdAt: string;
 }
 
 export interface DonationCreateRequest {
   campaignId: number;
   amount: number;
+  cardId: number;
   message?: string;
   isAnonymous?: boolean;
 }

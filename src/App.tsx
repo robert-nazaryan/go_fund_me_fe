@@ -23,7 +23,11 @@ function App() {
               <Route path="/campaigns" element={<CampaignsPage />} />
               <Route path="/login" element={<LoginPage />} />
               <Route path="/register" element={<RegisterPage />} />
-              <Route path="/campaigns/:id" element={<CampaignDetailsPage />} />
+              <Route path="/campaigns/:id" element={
+                <PrivateRoute>
+                  <CampaignDetailsPage />
+                </PrivateRoute>
+              } />
 
               <Route path="/create-campaign" element={
                 <PrivateRoute>

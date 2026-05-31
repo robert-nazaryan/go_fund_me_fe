@@ -172,6 +172,86 @@
   margin-left: 20px;
 }
 
+/* Card management */
+.card-add-form {
+  background: var(--bg-color);
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 24px;
+  border: 1px solid var(--border-color);
+}
+
+.card-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.card-error {
+  color: #ef4444;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+
+.cards-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.card-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  background: var(--bg-color);
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+}
+
+.card-item-info {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.card-type {
+  font-weight: 700;
+  color: var(--primary-color);
+  min-width: 70px;
+}
+
+.card-number {
+  font-family: monospace;
+  font-size: 16px;
+  letter-spacing: 2px;
+  font-weight: 600;
+}
+
+.card-holder {
+  color: var(--text-light);
+  font-size: 14px;
+}
+
+.card-expiry {
+  color: var(--text-light);
+  font-size: 13px;
+}
+
+.donation-txn {
+  display: block;
+  font-size: 11px;
+  color: var(--text-light);
+  font-family: monospace;
+  margin: 4px 0;
+}
+
 @media (max-width: 768px) {
   .profile-page {
     padding: 20px 15px;

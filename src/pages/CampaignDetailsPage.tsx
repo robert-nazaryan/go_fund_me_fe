@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import { campaignAPI, donationAPI } from '../services/api';
-import { Campaign, Donation } from '../types';
+import { useParams, Link } from 'react-router-dom';
+import { campaignAPI, donationAPI, paymentAPI } from '../services/api';
+import { Campaign, Donation, Card } from '../types';
 import { useLanguage } from '../context/LanguageContext';
 import { useAuth } from '../context/AuthContext';
 import './CampaignDetailsPage.css';
@@ -12,6 +12,8 @@ function CampaignDetailsPage() {
   const { user } = useAuth();
   const [campaign, setCampaign] = useState<Campaign | null>(null);
   const [donations, setDonations] = useState<Donation[]>([]);
+  const [cards, setCards] = useState<Card[]>([]);
+  const [selectedCardId, setSelectedCardId] = useState<number | null>(null);
   const [amount, setAmount] = useState('');
   const [message, setMessage] = useState('');
   const [isAnonymous, setIsAnonymous] = useState(false);
@@ -25,7 +27,18 @@ function CampaignDetailsPage() {
 
   useEffect(() => {
     loadCampaignDetails();
+    loadCards();
   }, [id]);
+
+  const loadCards = async () => {
+    try {
+      const res = await paymentAPI.getCards();
+      setCards(res.data);
+      if (res.data.length > 0) setSelectedCardId(res.data[0].id);
+    } catch (error) {
+      console.error('Error loading cards:', error);
+    }
+  };
 
   const loadCampaignDetails = async () => {
     try {
@@ -62,42 +75,26 @@ function CampaignDetailsPage() {
 
     const donationAmount = parseFloat(amount);
 
-    // Валидация суммы
     if (isNaN(donationAmount) || donationAmount <= 0) {
       showError(t.campaignDetails.invalidAmount);
       return;
     }
 
-    // Проверка баланса
-    if (user && donationAmount > user.virtualBalance) {
-      showError(t.campaignDetails.insufficientFunds);
+    if (!selectedCardId) {
+      showError('Пожалуйста, выберите карту для оплаты. Добавьте карту в профиле.');
       return;
     }
 
     setIsProcessing(true);
 
     try {
-      // ===== МЕСТО ДЛЯ ИНТЕГРАЦИИ РЕАЛЬНОЙ ПЛАТЕЖНОЙ СИСТЕМЫ =====
-      // Здесь будет:
-      // 1. Вызов payment gateway (Stripe, PayPal, etc.)
-      // 2. Обработка 3D Secure если нужно
-      // 3. Получение payment confirmation
-      // const paymentResult = await processPayment(donationAmount);
-      // if (!paymentResult.success) {
-      //   showError(paymentResult.error);
-      //   return;
-      // }
-      // ===========================================================
-
       await donationAPI.create({
         campaignId: Number(id),
         amount: donationAmount,
+        cardId: selectedCardId,
         message: message || undefined,
         isAnonymous
       });
-
-      // Триггерим событие для обновления баланса в Navbar
-      window.dispatchEvent(new CustomEvent('balanceUpdate'));
 
       // Показываем успех
       showError(t.campaignDetails.donationSuccess);
@@ -306,6 +303,29 @@ function CampaignDetailsPage() {
                   />
                 </div>
 
+                <div className="form-group">
+                  <label>Карта для оплаты</label>
+                  {cards.length === 0 ? (
+                      <div className="no-card-warning">
+                        У вас нет сохранённых карт.{' '}
+                        <Link to="/profile">Добавьте карту в профиле</Link>
+                      </div>
+                  ) : (
+                      <select
+                          className="form-input"
+                          value={selectedCardId ?? ''}
+                          onChange={e => setSelectedCardId(Number(e.target.value))}
+                          disabled={isProcessing}
+                      >
+                        {cards.map(card => (
+                            <option key={card.id} value={card.id}>
+                              {card.cardType} •••• {card.last4} — {card.cardHolder}
+                            </option>
+                        ))}
+                      </select>
+                  )}
+                </div>
+
                 <div className="form-checkbox">
                   <input
                       type="checkbox"
@@ -320,7 +340,7 @@ function CampaignDetailsPage() {
                 <button
                     type="submit"
                     className="btn btn-donate"
-                    disabled={isProcessing}
+                    disabled={isProcessing || cards.length === 0}
                 >
                   {isProcessing ? (
                       <>

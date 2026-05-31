@@ -36,32 +36,6 @@ function HomePage() {
           </div>
         </section>
 
-        <section className="features-section">
-          <h2 className="section-title">{t.landing.whyUs}</h2>
-          <div className="features-grid">
-            <div className="feature-card">
-              <div className="feature-icon">🚀</div>
-              <h3 className="feature-title">{t.landing.feature1Title}</h3>
-              <p className="feature-description">{t.landing.feature1Desc}</p>
-            </div>
-            <div className="feature-card">
-              <div className="feature-icon">🔒</div>
-              <h3 className="feature-title">{t.landing.feature2Title}</h3>
-              <p className="feature-description">{t.landing.feature2Desc}</p>
-            </div>
-            <div className="feature-card">
-              <div className="feature-icon">💡</div>
-              <h3 className="feature-title">{t.landing.feature3Title}</h3>
-              <p className="feature-description">{t.landing.feature3Desc}</p>
-            </div>
-            <div className="feature-card">
-              <div className="feature-icon">🌍</div>
-              <h3 className="feature-title">{t.landing.feature4Title}</h3>
-              <p className="feature-description">{t.landing.feature4Desc}</p>
-            </div>
-          </div>
-        </section>
-
         <section className="categories-section">
           <h2 className="section-title">{t.landing.categories}</h2>
           <div className="categories-grid">
