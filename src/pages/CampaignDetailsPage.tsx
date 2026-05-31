@@ -3,13 +3,11 @@ import { useParams, Link } from 'react-router-dom';
 import { campaignAPI, donationAPI, paymentAPI } from '../services/api';
 import { Campaign, Donation, Card } from '../types';
 import { useLanguage } from '../context/LanguageContext';
-import { useAuth } from '../context/AuthContext';
 import './CampaignDetailsPage.css';
 
 function CampaignDetailsPage() {
   const { t } = useLanguage();
   const { id } = useParams<{ id: string }>();
-  const { user } = useAuth();
   const [campaign, setCampaign] = useState<Campaign | null>(null);
   const [donations, setDonations] = useState<Donation[]>([]);
   const [cards, setCards] = useState<Card[]>([]);
