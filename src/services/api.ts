@@ -15,7 +15,7 @@ import type {
   CardAddRequest
 } from '../types';
 
-export const API_URL = 'https://gofundmebe.railway.internal';
+export const API_URL = 'https://gofundmebe-production.up.railway.app/';
 
 const api: AxiosInstance = axios.create({
   baseURL: API_URL,
